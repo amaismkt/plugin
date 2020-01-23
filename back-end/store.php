@@ -30,7 +30,5 @@ foreach($dados as $dado){
             'categoria' => $categoria,
             'carga_horaria' => $carga_horaria
         ));
-        
     }
-
 }

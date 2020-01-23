@@ -1,0 +1,31 @@
+<?php
+
+if(!isset($wpdb)){
+    //the '../' is the number of folders to go up from the current file to the root-map.
+    require_once('../../../../wp-config.php');
+    require_once('../../../../wp-includes/wp-db.php');
+}
+
+require_once "../plugins/dompdf/autoload.inc.php";
+use Dompdf\Dompdf;
+
+global $wpdb;
+$results = $wpdb->get_results( 
+    $wpdb->prepare("SELECT * FROM {$wpdb->prefix}participantes WHERE nome='".$_REQUEST['nome']."' AND cpf='".$_REQUEST['cpf']."'") 
+);
+setlocale(LC_TIME, 'pt_BR', 'pt_BR.utf-8', 'pt_BR.utf-8', 'portuguese');
+date_default_timezone_set('America/Sao_Paulo');
+header('Content-type: text/html; charset=UTF-8');
+ob_start();
+
+include_once "../views/pdf/index.php";
+
+$html = ob_get_contents();
+ob_end_clean();
+
+$dompdf = new Dompdf();
+$dompdf->loadHtml($html);
+$dompdf->setPaper('A4', 'portrait');
+$dompdf->render();
+$dompdf->stream();
+
