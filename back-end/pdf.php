@@ -13,6 +13,7 @@ global $wpdb;
 $results = $wpdb->get_results( 
     $wpdb->prepare("SELECT * FROM {$wpdb->prefix}participantes WHERE nome='".$_REQUEST['nome']."' AND cpf='".$_REQUEST['cpf']."'") 
 );
+
 setlocale(LC_TIME, 'pt_BR', 'pt_BR.utf-8', 'pt_BR.utf-8', 'portuguese');
 date_default_timezone_set('America/Sao_Paulo');
 header('Content-type: text/html; charset=UTF-8');
@@ -25,7 +26,8 @@ ob_end_clean();
 
 $dompdf = new Dompdf();
 $dompdf->loadHtml($html);
-$dompdf->setPaper('A4', 'portrait');
+$dompdf->setPaper('A4', 'landscape');
 $dompdf->render();
-$dompdf->stream();
+$dompdf->stream('aaa', array("Attachment" => false));
+exit(0);
 
