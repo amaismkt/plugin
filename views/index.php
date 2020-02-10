@@ -5,6 +5,20 @@
         <button id="botao-participantes" class="button" disabled>Participantes</button>
         <button id="botao-certificado" class="button">Certificado</button>
     </div>
+    <div class="col-md-12" style="margin-top: 16px;">
+        <input onclick="mostrarFrase();" type="checkbox" name="desabilitar" id="desabilitar"> Desabilitar download de certificados.<br>
+        <div id="frase-personalizada" class="row" style="text-align:left !important; display: none;">
+            <div class="col-md-12">
+                <label for="frase-desabilitar">Frase personalizada: </label>
+            </div>
+            <div class="col-md-6">
+                <input type="text" name="frase-desabilitar" class="form-control" placeholder="Ex: O período de downloads expirou...">
+            </div>
+            <div class="col-md-2">
+                <button class="btn btn-success">Salvar</button>
+            </div>
+        </div>
+    </div>
 </div>
 
 <div class="col-md-8 offset-md-2 canvas" id="campo-participantes">
@@ -34,6 +48,10 @@
     </form>
 
 </div>
-
-
+<script>
+    function mostrarFrase()
+    {
+        $("#frase-personalizada").fadeToggle(300);
+    }
+</script>
 <?php require 'partials/footer.php'; ?>
