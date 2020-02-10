@@ -37,13 +37,27 @@
 
 <div class="col-md-8 offset-md-2 canvas" id="campo-certificado" style="display:none;">
 
-    <h3><i class="fa fa-image"></i> Imagem de fundo do certificado</h3>
+    <h3><i class="fa fa-cog"></i> Configurações do certificado</h3>
 
-    <form id="importar" class="form-arquivo" enctype="multipart/form-data">
+    <form id="configuracoes" class="form-arquivo" enctype="multipart/form-data">
 
-        <input type="file" id="input_file" name="csv" />
-        <button id="botao-importar" class="button button-primary importar" type="button"><i class="fa fa-upload"></i> Salvar</button>
-        <i class="fa fa-spinner fa-spin" id="loading" aria-hidden="true"></i>
+        <div class="row" style="margin-top: 26px;">
+            <label class="col-md-4" for="background_image"><b><i class="fa fa-image"></i> Imagem de fundo: </b></label>
+            <input type="file" class="col-md-8" id="background_image" name="background_image" />
+        </div>
+        
+        <div class="row" style="margin-top: 26px;">
+            <label class="col-md-4" for="title"><b><i class="fa fa-tag"></i> Título: </b></label>
+            <input class="col-md-8" type="text" id="title" class="form-control" name="title" />
+        </div>
+
+        <div class="row" style="margin-top: 46px;">
+            <div class="col-md-1"></div>
+            <div class="col-md-2">
+                <button id="salvar-configuracoes" class="col-md-12 button button-primary importar" type="button"><i class="fa fa-check"></i> Salvar</button>
+                <i class="fa fa-spinner fa-spin" id="loading" aria-hidden="true"></i>
+            </div>
+        </div>
 
     </form>
 
