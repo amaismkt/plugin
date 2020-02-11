@@ -14,6 +14,10 @@ $results = $wpdb->get_results(
     $wpdb->prepare("SELECT * FROM {$wpdb->prefix}participantes WHERE nome='".$_REQUEST['nome']."' AND cpf='".$_REQUEST['cpf']."'") 
 );
 
+$background =  $wpdb->get_results(
+    $wpdb->prepare("SELECT * FROM {$wpdb->prefix}congresso_images ORDER BY data DESC LIMIT 1") 
+)[0];
+
 setlocale(LC_TIME, 'pt_BR', 'pt_BR.utf-8', 'pt_BR.utf-8', 'portuguese');
 date_default_timezone_set('America/Sao_Paulo');
 header('Content-type: text/html; charset=UTF-8');
