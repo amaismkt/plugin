@@ -22,13 +22,21 @@ $(document).ready(() => {
             return;
         }
 
-        uploadImage();
+        let dados = uploadImage();
 
-        let dados = $("#configuracoes").serialize();
-
-        $.post("../wp-content/plugins/congresso/back-end/storeConfig.php", dados, response => {
-            console.log(response);
-        });
+        $.ajax({
+        url: '../wp-content/plugins/congresso/back-end/storeConfig.php',
+        type: 'post',
+        data: dados,
+        dataType: 'json',
+        contentType: false,
+        processData: false,
+        success: function(response){
+            if(response == 0){
+                alert('Ocorreu um erro ao enviar a imagem');
+            }
+        },
+    })
 
     });
     
@@ -67,19 +75,7 @@ function uploadImage()
     let fd = new FormData();
     let files = $('#background_image')[0].files[0];
     fd.append('file',files);
-
-    $.ajax({
-        url: '../wp-content/plugins/congresso/back-end/storeConfig.php',
-        type: 'post',
-        data: fd,
-        contentType: false,
-        processData: false,
-        success: function(response){
-            if(response == 0){
-                alert('Ocorreu um erro ao enviar a imagem');
-            }
-        },
-    })
+    return fd;
 }
 
 // LEITURA CSV
