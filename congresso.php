@@ -31,6 +31,30 @@ function ver_participantes()
     require 'views/participantes.php';
 }
 
+
+function images_tables()
+{
+    global $wpdb;
+
+    require_once(ABSPATH . 'wp-admin/includes/upgrade.php');
+
+    if(count($wpdb->get_var('SHOW TABLES LIKE "wp_congresso_images"')) == 0){
+
+        $sql = "
+            CREATE TABLE `wp_congresso_images` (
+                `id` int(11) NOT NULL AUTO_INCREMENT,
+                `nome` varchar(255) NOT NULL,
+                `data` DATETIME NOT NULL DEFAULT CURRENT_TIMESTAMP,
+                PRIMARY KEY(id)
+            );
+        ";
+
+        dbDelta($sql);
+    }
+}
+
+register_activation_hook(__FILE__, 'images_tables');
+
 function congresso_tables()
 {
     global $wpdb;
@@ -54,5 +78,6 @@ function congresso_tables()
 }
 
 register_activation_hook(__FILE__, 'congresso_tables');
+
 
 ?>
