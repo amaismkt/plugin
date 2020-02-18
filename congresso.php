@@ -45,6 +45,7 @@ function images_tables()
                 `id` int(11) NOT NULL AUTO_INCREMENT,
                 `nome` varchar(255) NOT NULL,
                 `data` DATETIME NOT NULL DEFAULT CURRENT_TIMESTAMP,
+                `titulo` varchar(255) NOT NULL,
                 PRIMARY KEY(id)
             );
         ";
@@ -68,6 +69,8 @@ function congresso_tables()
                 `id` int(11) NOT NULL AUTO_INCREMENT,
                 `nome` varchar(255) NOT NULL,
                 `email` varchar(255) NOT NULL,
+                `cpf` varchar(255) NOT NULL,
+                `carga_horaria` varchar(255) NOT NULL,
                 PRIMARY KEY(id)
             );
         ";

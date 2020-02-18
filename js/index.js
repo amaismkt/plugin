@@ -34,6 +34,8 @@ $(document).ready(() => {
         success: function(response){
             if(response == 0){
                 alert('Ocorreu um erro ao enviar a imagem');
+            }else{
+                alert('Configurações salvas com sucesso!');
             }
         },
     })
@@ -75,6 +77,7 @@ function uploadImage()
     let fd = new FormData();
     let files = $('#background_image')[0].files[0];
     fd.append('file',files);
+    fd.append('titulo', $("#title").val());
     return fd;
 }
 

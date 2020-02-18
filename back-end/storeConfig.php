@@ -42,6 +42,7 @@ if(isset($_FILES['file']) && $_FILES['file']['size'] > 0){
 
             $wpdb->insert($table, array(
                 'nome' => $nome_escudo,
+                'titulo' => $_REQUEST['titulo']
             ));
 
             $retorno = array('status' => 200, 'mensagem' => 'Upload realizado com sucesso', 'path' => '/wp-content/plugins/congresso/back-end/img/'.$nome_escudo); 

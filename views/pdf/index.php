@@ -53,8 +53,8 @@
         <h1 class="nome">
             <?php echo $results[0]->nome; ?>
         </h1>
-        <h2>3ª Reunião do Núcleo de Uroginecologia 2019</h2>
-        <span> na sede da Associação de Obstetrícia e Ginecologia do Rio Grande do Sul, com carga horária de 03h.</span>
+        <h2><?php echo $background->titulo; ?></h2>
+        <br><span>Carga horária: <?php echo $results[0]->carga_horaria; ?>.</span>
     </div>
 </body>
 </html>

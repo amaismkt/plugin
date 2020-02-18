@@ -1,9 +1,14 @@
 <?php require 'partials/header.php'; ?>
-
+<script>
+    $("#configuracoes").submit(() => {
+        event.preventDefault();
+    });
+</script>
 <div class="row menu">
     <div class="col-md-12">
         <button id="botao-participantes" class="button" disabled>Participantes</button>
         <button id="botao-certificado" class="button">Certificado</button>
+        <a href="/plugin/wp-content/plugins/congresso/download.php"><button class="button button-success">Link Certificado</button></a>
     </div>
     <div class="col-md-12" style="margin-top: 16px;">
         <input onclick="mostrarFrase();" type="checkbox" name="desabilitar" id="desabilitar"> Desabilitar download de certificados.<br>
@@ -48,7 +53,7 @@
         
         <div class="row" style="margin-top: 26px;">
             <label class="col-md-4" for="title"><b><i class="fa fa-tag"></i> Título: </b></label>
-            <input class="col-md-8" type="text" id="title" class="form-control" name="title" />
+            <input class="col-md-8" type="text" id="title" class="form-control" name="title" required>
         </div>
 
         <div class="row" style="margin-top: 46px;">
@@ -63,6 +68,9 @@
 
 </div>
 <script>
+    $("#configuracoes").submit(() => {
+        event.preventDefault();
+    });
     function mostrarFrase()
     {
         $("#frase-personalizada").fadeToggle(300);

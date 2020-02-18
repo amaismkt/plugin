@@ -11,11 +11,16 @@ use Dompdf\Dompdf;
 
 global $wpdb;
 $results = $wpdb->get_results( 
-    $wpdb->prepare("SELECT * FROM {$wpdb->prefix}participantes WHERE nome='".$_REQUEST['nome']."' AND cpf='".$_REQUEST['cpf']."'") 
+    //$wpdb->prepare("SELECT * FROM {$wpdb->prefix}participantes WHERE nome='".$_REQUEST['nome']."' AND cpf='".$_REQUEST['cpf']."'", null) 
+    $wpdb->prepare("SELECT * FROM {$wpdb->prefix}participantes WHERE cpf='".$_REQUEST['cpf']."'", null) 
 );
 
+if(!$results){
+    die("Participante não encontrado!");
+}
+
 $background =  $wpdb->get_results(
-    $wpdb->prepare("SELECT * FROM {$wpdb->prefix}congresso_images ORDER BY data DESC LIMIT 1") 
+    $wpdb->prepare("SELECT * FROM {$wpdb->prefix}congresso_images ORDER BY data DESC LIMIT 1", null) 
 )[0];
 
 setlocale(LC_TIME, 'pt_BR', 'pt_BR.utf-8', 'pt_BR.utf-8', 'portuguese');
