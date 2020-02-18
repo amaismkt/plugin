@@ -71,6 +71,7 @@ function congresso_tables()
                 `email` varchar(255) NOT NULL,
                 `cpf` varchar(255) NOT NULL,
                 `carga_horaria` varchar(255) NOT NULL,
+                `categoria` varchar(255) NOT NULL,
                 PRIMARY KEY(id)
             );
         ";
