@@ -17,6 +17,8 @@ $(document).ready(() => {
     // salva configurações personalizadas do certificado
     $("#salvar-configuracoes").click(() => {
 
+        $("#config-loader").show();
+
         if($("#background_image").val() == ''){
             alert('Nenhum arquivo selecionado!');
             return;
@@ -32,6 +34,7 @@ $(document).ready(() => {
         contentType: false,
         processData: false,
         success: function(response){
+            $("#config-loader").hide();
             if(response == 0){
                 alert('Ocorreu um erro ao enviar a imagem');
             }else{

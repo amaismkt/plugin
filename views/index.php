@@ -1,14 +1,13 @@
 <?php require 'partials/header.php'; ?>
-<script>
-    $("#configuracoes").submit(() => {
-        event.preventDefault();
-    });
-</script>
+<script src="https://code.jquery.com/jquery-3.4.1.js" integrity="sha256-WpOohJOqMqqyKL9FccASB9O0KwACQJpFTUBLTYOVvVU=" crossorigin="anonymous"></script>
+<link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.4.1/css/bootstrap.min.css">
+<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.4.1/jquery.min.js"></script>
+<script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.4.1/js/bootstrap.min.js"></script>
 <div class="row menu">
     <div class="col-md-12">
         <button id="botao-participantes" class="button" disabled>Participantes</button>
         <button id="botao-certificado" class="button">Certificado</button>
-        <a href="/plugin/wp-content/plugins/congresso/download.php"><button class="button button-success">Link Certificado</button></a>
+        <button type="button" class="button" data-toggle="modal" data-target="#myModal">Gerar Link</button>
     </div>
     <div class="col-md-12" style="margin-top: 16px;">
         <input onclick="mostrarFrase();" type="checkbox" name="desabilitar" id="desabilitar"> Desabilitar download de certificados.<br>
@@ -59,14 +58,40 @@
         <div class="row" style="margin-top: 46px;">
             <div class="col-md-1"></div>
             <div class="col-md-2">
+                <i class="fa fa-spinner fa-pulse fa-3x fa-fw" style="margin:15px; display: none;" id="config-loader"></i>
                 <button id="salvar-configuracoes" class="col-md-12 button button-primary importar" type="button"><i class="fa fa-check"></i> Salvar</button>
-                <i class="fa fa-spinner fa-spin" id="loading" aria-hidden="true"></i>
             </div>
         </div>
 
     </form>
 
 </div>
+
+<!-- Modal -->
+<div class="modal fade" id="myModal" role="dialog">
+    <div class="modal-dialog">
+    
+      <!-- Modal content-->
+      <div class="modal-content">
+        <div class="modal-header">
+          <h4 class="modal-title">Link gerado com sucesso!</h4>
+          <button type="button" class="close" data-dismiss="modal">&times;</button>
+        </div>
+        <div class="modal-body">
+          <p>Para disponibilizar o link para os participantes em seu site, copie a URL abaixo:</p>
+          <br>
+          <a id="url"></a>
+        </div>
+        <div class="modal-footer">
+          <button type="button" class="btn btn-default" data-dismiss="modal">Fechar</button>
+        </div>
+      </div>
+      
+    </div>
+</div>
+  
+
+
 <script>
     $("#configuracoes").submit(() => {
         event.preventDefault();
@@ -75,5 +100,7 @@
     {
         $("#frase-personalizada").fadeToggle(300);
     }
+    $("#url").html("http://" + window.location.hostname + "/plugin/wp-content/plugins/congresso/download.php");
+    $("#url").attr("href", "http://" + window.location.hostname + "/plugin/wp-content/plugins/congresso/download.php");
 </script>
 <?php require 'partials/footer.php'; ?>
