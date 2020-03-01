@@ -10,7 +10,7 @@
         <button type="button" class="button" data-toggle="modal" data-target="#myModal">Gerar Link</button>
     </div>
     <div class="col-md-12" style="margin-top: 16px;">
-        <input onclick="mostrarFrase();" type="checkbox" name="desabilitar" id="desabilitar"> Desabilitar download de certificados.<br>
+        <input type="checkbox" name="desabilitar" id="desabilitar"> Desabilitar download de certificados.<br>
         <div id="frase-personalizada" class="row" style="text-align:left !important; display: none;">
             <div class="col-md-12">
                 <label for="frase-desabilitar">Frase personalizada: </label>
@@ -96,10 +96,6 @@
     $("#configuracoes").submit(() => {
         event.preventDefault();
     });
-    function mostrarFrase()
-    {
-        $("#frase-personalizada").fadeToggle(300);
-    }
     $("#url").html("http://" + window.location.hostname + "/plugin/wp-content/plugins/congresso/download.php");
     $("#url").attr("href", "http://" + window.location.hostname + "/plugin/wp-content/plugins/congresso/download.php");
 </script>

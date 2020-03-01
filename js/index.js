@@ -72,6 +72,16 @@ $(document).ready(() => {
         $("#campo-certificado").fadeIn(300);
     });
 
+    // mostra campo para desabilitar downloads
+    $("#desabilitar").change(() => {
+        if($("#desabilitar").prop("checked")){
+            $("#frase-personalizada").fadeIn(300);
+        }else{
+            $("#frase-personalizada").fadeOut(300);
+        }
+    });
+    
+
 });
 
 // faz o upload da imagem de fundo do certificado
@@ -139,6 +149,8 @@ function errorHandler(evt)
 // BLOQUEIO DO DOWNLOAD DE CERTIFICADOS
 
 $("#desabilitar").click(() => {
+
+    
 
 });
 
