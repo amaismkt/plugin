@@ -15,8 +15,16 @@ $results = $wpdb->get_results(
     $wpdb->prepare("SELECT * FROM {$wpdb->prefix}participantes WHERE cpf='".$_REQUEST['cpf']."'", null) 
 );
 
+$bloqueio = $wpdb->get_results(
+     $wpdb->prepare("SELECT * FROM {$wpdb->prefix}bloqueio ORDER BY id DESC LIMIT 1", null) 
+)[0];
+
+if($bloqueio->bloqueio == 1){
+    die("<h3 style='text-align:center; margin-top: 7%;'>".$bloqueio->frase_bloqueio."</h3>");
+}
+
 if(!$results){
-    die("Participante não encontrado!");
+    die("<h3 style='text-align:center; margin-top: 7%;'>Participante não encontrado!</h3>");
 }
 
 $background =  $wpdb->get_results(

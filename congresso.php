@@ -46,7 +46,7 @@ function images_tables()
                 `nome` varchar(255) NOT NULL,
                 `data` DATETIME NOT NULL DEFAULT CURRENT_TIMESTAMP,
                 `titulo` varchar(255) NOT NULL,
-                `frase-bloqueio` varchar(255) NOT NULL,
+                `frase_bloqueio` varchar(255) NOT NULL,
                 PRIMARY KEY(id)
             );
         ";
@@ -96,7 +96,7 @@ function bloqueio_table()
         $sql = "
             CREATE TABLE `".$wpdb->prefix."bloqueio` (
                 `id` int(11) NOT NULL AUTO_INCREMENT,
-                `frase-bloqueio` varchar(255) NOT NULL,
+                `frase_bloqueio` varchar(255) NOT NULL,
                 `bloqueio` TINYINT (1) DEFAULT 0,
                 PRIMARY KEY(id)
             );

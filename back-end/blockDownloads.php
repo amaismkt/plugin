@@ -12,7 +12,14 @@ if(!isset($wpdb))
 $frase = $_POST["frase"];
 $table = $wpdb->prefix."bloqueio";
 
-$wpdb->insert($table, array(
-    'frase-bloqueio' => $frase,
-    'bloqueio' => 1
-));
+if(isset($_POST["bloqueio"])){
+    $wpdb->insert($table, array(
+        'frase_bloqueio' => $frase,
+        'bloqueio' => 0
+    ));
+}else{
+    $wpdb->insert($table, array(
+        'frase_bloqueio' => $frase,
+        'bloqueio' => 1
+    ));
+}

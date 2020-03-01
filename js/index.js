@@ -1,5 +1,12 @@
 $(document).ready(() => {
 
+    // verfica o campo "Desabilitar download de certificados"
+    $.get("../wp-content/plugins/congresso/back-end/verifyBlock.php", data => {
+        if(JSON.parse(data).bloqueio == 1){
+            $("#desabilitar").attr("checked", true);
+        }
+    });
+
     // importa arquivo csv
     $("#botao-importar").click(() => {
 
@@ -78,7 +85,23 @@ $(document).ready(() => {
             $("#frase-personalizada").fadeIn(300);
         }else{
             $("#frase-personalizada").fadeOut(300);
+            let dados = {frase: "nenhuma", bloqueio:0};
+
+            $.post("../wp-content/plugins/congresso/back-end/blockDownloads.php", dados, response => {
+                console.log(response);
+            })
+            .done(() => { alert("Download de certificados liberado!"); });
         }
+    });
+
+    // desabilita downloads e salva frase
+    $("#salvar-frase").click(() => {
+        let dados = {frase: $("#frase-bloqueio").val()};
+
+        $.post("../wp-content/plugins/congresso/back-end/blockDownloads.php", dados, response => {
+            console.log(response);
+        })
+        .done(() => { alert("Download de certificados bloqueado!"); });
     });
     
 

@@ -16,10 +16,10 @@
                 <label for="frase-desabilitar">Frase personalizada: </label>
             </div>
             <div class="col-md-6">
-                <input type="text" name="frase-desabilitar" class="form-control" placeholder="Ex: O período de downloads expirou...">
+                <input type="text" name="frase-bloqueio" id="frase-bloqueio" class="form-control" placeholder="Ex: O período de downloads expirou...">
             </div>
             <div class="col-md-2">
-                <button id="desabilitar" class="btn btn-success">Salvar</button>
+                <button id="salvar-frase" class="btn btn-success">Salvar</button>
             </div>
         </div>
     </div>
