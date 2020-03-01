@@ -26,7 +26,7 @@ function ver_participantes()
 
     require_once(ABSPATH . 'wp-admin/includes/upgrade.php');
 
-    $participantes = $wpdb->get_results( "SELECT * FROM wp_participantes");
+    $participantes = $wpdb->get_results("SELECT * FROM ".$wpdb->prefix."participantes");
     
     require 'views/participantes.php';
 }
@@ -38,14 +38,15 @@ function images_tables()
 
     require_once(ABSPATH . 'wp-admin/includes/upgrade.php');
 
-    if(count($wpdb->get_var('SHOW TABLES LIKE "wp_congresso_images"')) == 0){
+    if(count($wpdb->get_var('SHOW TABLES LIKE "'.$wpdb->prefix.'congresso_images"')) == 0){
 
         $sql = "
-            CREATE TABLE `wp_congresso_images` (
+            CREATE TABLE `".$wpdb->prefix."congresso_images` (
                 `id` int(11) NOT NULL AUTO_INCREMENT,
                 `nome` varchar(255) NOT NULL,
                 `data` DATETIME NOT NULL DEFAULT CURRENT_TIMESTAMP,
                 `titulo` varchar(255) NOT NULL,
+                `frase-bloqueio` varchar(255) NOT NULL,
                 PRIMARY KEY(id)
             );
         ";
@@ -62,10 +63,10 @@ function congresso_tables()
 
     require_once(ABSPATH . 'wp-admin/includes/upgrade.php');
 
-    if(count($wpdb->get_var('SHOW TABLES LIKE "wp_partipantes"')) == 0){
+    if(count($wpdb->get_var('SHOW TABLES LIKE "'.$wpdb->prefix.'partipantes"')) == 0){
 
         $sql = "
-            CREATE TABLE `wp_participantes` (
+            CREATE TABLE `".$wpdb->prefix."participantes` (
                 `id` int(11) NOT NULL AUTO_INCREMENT,
                 `nome` varchar(255) NOT NULL,
                 `email` varchar(255) NOT NULL,
@@ -83,5 +84,29 @@ function congresso_tables()
 
 register_activation_hook(__FILE__, 'congresso_tables');
 
+
+function bloqueio_table()
+{
+    global $wpdb;
+
+    require_once(ABSPATH . 'wp-admin/includes/upgrade.php');
+
+    if(count($wpdb->get_var('SHOW TABLES LIKE "'.$wpdb->prefix.'bloqueio"')) == 0){
+
+        $sql = "
+            CREATE TABLE `".$wpdb->prefix."bloqueio` (
+                `id` int(11) NOT NULL AUTO_INCREMENT,
+                `frase-bloqueio` varchar(255) NOT NULL,
+                `bloqueio` TINYINT (1) DEFAULT 0,
+                PRIMARY KEY(id)
+            );
+        ";
+
+        dbDelta($sql);
+
+    }
+}
+
+register_activation_hook(__FILE__, 'bloqueio_table');
 
 ?>

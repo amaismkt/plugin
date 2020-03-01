@@ -9,5 +9,10 @@ if(!isset($wpdb))
     require_once('../../../../wp-includes/wp-db.php');
 }
 
-$id = $_POST['id'];
-$wpdb->delete($wpdb->prefix.'participantes', array( 'id' => $id ));
+$frase = $_POST["frase"];
+$table = $wpdb->prefix."bloqueio";
+
+$wpdb->insert($table, array(
+    'frase-bloqueio' => $frase,
+    'bloqueio' => 1
+));

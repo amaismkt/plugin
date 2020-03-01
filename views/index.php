@@ -19,7 +19,7 @@
                 <input type="text" name="frase-desabilitar" class="form-control" placeholder="Ex: O período de downloads expirou...">
             </div>
             <div class="col-md-2">
-                <button class="btn btn-success">Salvar</button>
+                <button id="desabilitar" class="btn btn-success">Salvar</button>
             </div>
         </div>
     </div>

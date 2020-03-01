@@ -135,3 +135,11 @@ function errorHandler(evt)
     }
 }
 // FIM LEITURA CSV
+
+// BLOQUEIO DO DOWNLOAD DE CERTIFICADOS
+
+$("#desabilitar").click(() => {
+
+});
+
+//
