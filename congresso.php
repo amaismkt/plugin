@@ -43,6 +43,7 @@ function images_tables()
         $sql = "
             CREATE TABLE `".$wpdb->prefix."congresso_images` (
                 `id` int(11) NOT NULL AUTO_INCREMENT,
+                `event_id` int(11) NOT NULL,
                 `nome` varchar(255) NOT NULL,
                 `data` DATETIME NOT NULL DEFAULT CURRENT_TIMESTAMP,
                 `titulo` varchar(255) NOT NULL,
@@ -68,6 +69,7 @@ function congresso_tables()
         $sql = "
             CREATE TABLE `".$wpdb->prefix."participantes` (
                 `id` int(11) NOT NULL AUTO_INCREMENT,
+                `event_id` int(11) NOT NULL,
                 `nome` varchar(255) NOT NULL,
                 `email` varchar(255) NOT NULL,
                 `cpf` varchar(255) NOT NULL,
@@ -96,6 +98,7 @@ function bloqueio_table()
         $sql = "
             CREATE TABLE `".$wpdb->prefix."bloqueio` (
                 `id` int(11) NOT NULL AUTO_INCREMENT,
+                `event_id` int(11) NOT NULL,
                 `frase_bloqueio` varchar(255) NOT NULL,
                 `bloqueio` TINYINT (1) DEFAULT 0,
                 PRIMARY KEY(id)
@@ -108,5 +111,28 @@ function bloqueio_table()
 }
 
 register_activation_hook(__FILE__, 'bloqueio_table');
+
+function events_table()
+{
+    global $wpdb;
+
+    require_once(ABSPATH . 'wp-admin/includes/upgrade.php');
+
+    if(count($wpdb->get_var('SHOW TABLES LIKE "'.$wpdb->prefix.'eventos"')) == 0){
+
+        $sql = "
+            CREATE TABLE `".$wpdb->prefix."eventos` (
+                `id` int(11) NOT NULL AUTO_INCREMENT,
+                `nome` varchar(255) NOT NULL,
+                PRIMARY KEY(id)
+            );
+        ";
+
+        dbDelta($sql);
+
+    }
+}
+
+register_activation_hook(__FILE__, 'events_table');
 
 ?>
