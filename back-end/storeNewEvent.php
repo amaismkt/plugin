@@ -9,9 +9,6 @@ if(!isset($wpdb))
     require_once('../../../../wp-includes/wp-db.php');
 }
 
-$dados = $_POST["data"];
-
+$dados = $_POST["nome"];
 $table = $wpdb->prefix."eventos";
-
-$wpdb->insert($table, ["nome" => $dados["nome"]]);
-die(var_dump($_POST));
+$wpdb->insert($table, ["nome" => $dados]);

@@ -2,14 +2,13 @@ $(document).ready(() => {
 
     // verfica o campo "Desabilitar download de certificados"
     $.get("../wp-content/plugins/congresso/back-end/verifyBlock.php", data => {
-        if(JSON.parse(data).bloqueio == 1){
+        if(JSON.parse(data)?.bloqueio == 1){
             $("#desabilitar").attr("checked", true);
         }
     });
 
     // importa arquivo csv
     $("#botao-importar").click(() => {
-
         if($("#input_file").val() == ''){
             alert('Nenhum arquivo selecionado!');
             return;

@@ -5,6 +5,10 @@
 <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.4.1/js/bootstrap.min.js"></script>
 
 <div class="col-md-10 offset-md-1">
+    <div class="alert alert-danger" role="alert" style="display:none" id="alert">
+        <h4 class="alert-heading">Ops!</h4>
+        <p>Tivemos algum erro na hora de realizar esta operação por favor contate nossos especialistas.</p>        
+    </div>
 
     <h3 style="text-align: center;"><i class="fa fa-calendar"></i> Seus eventos: </h3>
 
@@ -15,6 +19,9 @@
                 <i style="font-size: 180px; color: #d1d1d1;" class="fa fa-plus"></i>
             </div>
         </div>
+    </div>
+    <div class="row" id="cards-row">
+    
     </div>
 
 </div>
@@ -31,7 +38,7 @@
         </div>
         <div class="modal-body">
             <form id="add-event-form">
-                <input type="text" class="form-control" placeholder="Nome do evento..." required>
+                <input type="text" class="form-control" placeholder="Nome do evento..." name="nome" required>
                 <button type="submit" id="add-event" style="margin-top: 16px;" class="btn btn-primary">Adicionar</button>
             </form>
         </div>
@@ -42,4 +49,5 @@
       
     </div>
 </div>
+
 <?php require 'partials/footer.php'; ?>
