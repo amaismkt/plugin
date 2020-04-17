@@ -46,12 +46,12 @@ $(document).ready(() => {
     }
 
     editEvent = id => {
-        alert("AIAIAI FUI ACIONADO")
+        window.localStorage.setItem("id", id)
+        window.location.assign("teste")
     }
     
     deleteEvent = id => {
         $(`#${id}-card`).fadeOut(400)
-        let flag = true;
         return
     }
 
