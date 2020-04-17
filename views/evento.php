@@ -5,7 +5,8 @@
 <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.4.1/js/bootstrap.min.js"></script>
 <div class="row menu">
     <div class="col-md-12">
-        <button id="botao-participantes" class="button" disabled>Participantes</button>
+        <button id="botao-editar" class="button" disabled>Editar</button>
+        <button id="botao-participantes" class="button" >Participantes</button>
         <button id="botao-certificado" class="button">Certificado</button>
         <button type="button" class="button" data-toggle="modal" data-target="#myModal">Gerar Link</button>
     </div>
@@ -25,7 +26,16 @@
     </div>
 </div>
 
-<div class="col-md-8 offset-md-2 canvas" id="campo-participantes">
+<div class="col-md-8 offset-md-2 canvas" id="campo-editar">
+    <form id="evento" class="form-arquivo">
+        <input type="text" name="nome" value="<?php echo get_event($_GET['evento'])[0]->nome; ?>">
+        <input type="number" name="id" value="<?php echo $_GET['evento']; ?>" hidden>
+        <button id="botao-edicao" class="button button-primary" type="button" value=""></i> Editar</button>
+        <i class="fa fa-spinner fa-spin" id="loading" aria-hidden="true"></i>
+    </form>
+</div>
+
+<div class="col-md-8 offset-md-2 canvas" id="campo-participantes" style="display:none;">
 
     <h3><i class="fa fa-users"></i> Importar tabela de participantes</h3>
 
@@ -34,11 +44,8 @@
         <button id="botao-importar" class="button button-primary importar" type="button"><i class="fa fa-upload"></i> Importar</button>
         <i class="fa fa-spinner fa-spin" id="loading" aria-hidden="true"></i>
     </form>
+    <?php ver_participantes($_GET['evento']) ?>
 
-</div>
-
-<div class="col-md-8 offset-md-2 canvas" id="campo-participantes"> 
-    <?php ver_participantes() ?>
 </div>
 
 <div class="col-md-8 offset-md-2 canvas" id="campo-certificado" style="display:none;">
@@ -51,11 +58,14 @@
             <label class="col-md-4" for="background_image"><b><i class="fa fa-image"></i> Imagem de fundo: </b></label>
             <input type="file" class="col-md-8" id="background_image" name="background_image" />
         </div>
+        <div class="row">
+            <img src="<?php echo plugin_dir_url( dirname( __FILE__ ) ); ?>/back-end/img/<?php echo get_event_image($_GET['evento'])[0]->nome; ?>" alt="" srcset="">
+        </div>
         
         <div class="row" style="margin-top: 26px;">
             <label class="col-md-4" for="title"><b><i class="fa fa-tag"></i> Título: </b></label>
-            <input class="col-md-8" type="text" id="title" class="form-control" name="title" required>
-        </div>
+            <input class="col-md-8" type="text" id="title" class="form-control" name="title" required value="<?php echo get_event_image($_GET['evento'])[0]->titulo; ?>">
+        </div>        
 
         <div class="row" style="margin-top: 46px;">
             <div class="col-md-1"></div>
@@ -95,9 +105,7 @@
 
 
 <script>
-    $("#configuracoes").submit(() => {
-        event.preventDefault();
-    });
+    $("#configuracoes").submit(() => event.preventDefault());
     $("#url").html("http://" + window.location.hostname + "/plugin/wp-content/plugins/congresso/download.php");
     $("#url").attr("href", "http://" + window.location.hostname + "/plugin/wp-content/plugins/congresso/download.php");
 </script>

@@ -31,8 +31,7 @@ if(isset($_FILES['file']) && $_FILES['file']['size'] > 0){
         } else {
             global $wpdb;
 
-            if(!isset($wpdb))
-            {
+            if(!isset($wpdb)) {
                 //the '../' is the number of folders to go up from the current file to the root-map.
                 require_once('../../../../wp-config.php');
                 require_once('../../../../wp-includes/wp-db.php');
@@ -40,10 +39,26 @@ if(isset($_FILES['file']) && $_FILES['file']['size'] > 0){
 
             $table = $wpdb->prefix."congresso_images";
 
-            $wpdb->insert($table, array(
+            $results = $wpdb->get_row("SELECT * FROM $table_name WHERE event_id = ".$_REQUEST['event_id']);
+
+            $dados = array(
                 'nome' => $nome_escudo,
-                'titulo' => $_REQUEST['titulo']
-            ));
+                'titulo' => $_REQUEST['titulo'],
+                'event_id' => $_REQUEST['event_id']
+            );
+
+            if ($results) {
+                // Upadate data
+                $wpdb->update($table_name, $dados, array('event_id' => $results->id));
+            } else {
+                $wpdb->insert($table, $dados);
+            }
+
+            if($wpdb->last_error !== '') {
+                http_response_code(500);
+                $return =  array("error" => $wpdb->last_error);
+                echo json_encode($return);
+            }
 
             $retorno = array('status' => 200, 'mensagem' => 'Upload realizado com sucesso', 'path' => '/wp-content/plugins/congresso/back-end/img/'.$nome_escudo); 
             echo json_encode($retorno);

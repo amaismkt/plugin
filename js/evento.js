@@ -17,7 +17,6 @@ $(document).ready(() => {
         $("#loading").css('opacity', '1');
         arquivo = $("#input_file")[0].files[0];
         lerCsv(arquivo);
-
     });
 
     // salva configurações personalizadas do certificado
@@ -67,6 +66,9 @@ $(document).ready(() => {
     $("#botao-participantes").click(() => {
         $("#botao-participantes").prop('disabled', true);
         $("#botao-certificado").prop('disabled', false);
+        $("#botao-editar").prop('disabled', false);
+
+        $("#campo-editar").hide();
         $("#campo-certificado").hide();
         $("#campo-participantes").fadeIn(300);
     });
@@ -74,8 +76,21 @@ $(document).ready(() => {
     $("#botao-certificado").click(() => {
         $("#botao-certificado").prop('disabled', true);
         $("#botao-participantes").prop('disabled', false);
+        $("#botao-editar").prop('disabled', false);
+
+        $("#campo-editar").hide();
         $("#campo-participantes").hide();
         $("#campo-certificado").fadeIn(300);
+    });
+
+    $("#botao-editar").click(() => {
+        $("#botao-editar").prop('disabled', true);
+        $("#botao-participantes").prop('disabled', false);
+        $("#botao-certificado").prop('disabled', false);
+
+        $("#campo-certificado").hide();
+        $("#campo-participantes").hide();
+        $("#campo-editar").fadeIn(300);
     });
 
     // mostra campo para desabilitar downloads
@@ -102,6 +117,15 @@ $(document).ready(() => {
         })
         .done(() => { alert("Download de certificados bloqueado!"); });
     });
+
+    $("#botao-edicao").click( () => {
+        let dados = $("#evento").serialize();
+        
+        $.post("../wp-content/plugins/congresso/back-end/updateEvent.php", dados)
+        .always(() => $("#config-loader").hide())
+        .done( () => alert("Editado com sucesso"))
+        .fail( error => alert("Erro ao editar"));
+    })
     
 
 });
@@ -113,6 +137,12 @@ function uploadImage()
     let files = $('#background_image')[0].files[0];
     fd.append('file',files);
     fd.append('titulo', $("#title").val());
+
+    const queryString = window.location.search;
+    const urlParams = new URLSearchParams(queryString);
+    const eventId = urlParams.get('evento')    
+
+    fd.append('event_id', eventId);
     return fd;
 }
 
@@ -175,8 +205,6 @@ function errorHandler(evt)
 // BLOQUEIO DO DOWNLOAD DE CERTIFICADOS
 
 $("#desabilitar").click(() => {
-
-    
 
 });
 

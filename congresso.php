@@ -18,7 +18,6 @@ function edit()
 function my_admin_menu()
 {
     add_menu_page('Congresso', 'Congresso', 'manage_options', 'congresso', 'congresso', 'dashicons-admin-users', 6);
-    // add_submenu_page('congresso', 'Participantes', 'Participantes', 'manage_options', 'participantes', 'ver_participantes');
     add_submenu_page('congresso', 'Evento', 'Evento', 'manage_options', 'evento', 'edit');
 }
 
@@ -27,14 +26,41 @@ function congresso()
     require 'views/index.php';
 }
 
-function ver_participantes()
+function get_event($id)
+{
+    global $wpdb;
+
+    require_once(ABSPATH . 'wp-admin/includes/upgrade.php');
+    $event = $wpdb->get_results("SELECT * FROM ".$wpdb->prefix."eventos"." WHERE id=".$id);
+    
+    if($wpdb->last_error !== '') {
+        http_response_code(500);
+        return array("error" => $wpdb->last_error);
+    }
+    return $event;
+}
+
+function get_event_image($eventId)
 {
     global $wpdb;
 
     require_once(ABSPATH . 'wp-admin/includes/upgrade.php');
 
-    $participantes = $wpdb->get_results("SELECT * FROM ".$wpdb->prefix."participantes"." WHERE event_id=".$_GET['evento']);
+    $imageInfos = $wpdb->get_results("SELECT * FROM ".$wpdb->prefix."congresso_images"." WHERE event_id=".$eventId);
     
+    if($wpdb->last_error !== '') {
+        http_response_code(500);
+        return array("error" => $wpdb->last_error);
+    }
+    return $imageInfos;
+}
+
+function ver_participantes($id)
+{
+    global $wpdb;
+
+    require_once(ABSPATH . 'wp-admin/includes/upgrade.php');
+    $participantes = $wpdb->get_results("SELECT * FROM ".$wpdb->prefix."participantes"." WHERE event_id=".$id);
     require 'views/participantes.php';
 }
 
