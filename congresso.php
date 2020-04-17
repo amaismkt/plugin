@@ -18,7 +18,7 @@ function edit()
 function my_admin_menu()
 {
     add_menu_page('Congresso', 'Congresso', 'manage_options', 'congresso', 'congresso', 'dashicons-admin-users', 6);
-    add_submenu_page('congresso', 'Participantes', 'Participantes', 'manage_options', 'participantes', 'ver_participantes');
+    // add_submenu_page('congresso', 'Participantes', 'Participantes', 'manage_options', 'participantes', 'ver_participantes');
     add_submenu_page('congresso', 'Evento', 'Evento', 'manage_options', 'evento', 'edit');
 }
 
@@ -33,7 +33,7 @@ function ver_participantes()
 
     require_once(ABSPATH . 'wp-admin/includes/upgrade.php');
 
-    $participantes = $wpdb->get_results("SELECT * FROM ".$wpdb->prefix."participantes"." WHERE event_id=".$_GET['congresso']);
+    $participantes = $wpdb->get_results("SELECT * FROM ".$wpdb->prefix."participantes"." WHERE event_id=".$_GET['evento']);
     
     require 'views/participantes.php';
 }

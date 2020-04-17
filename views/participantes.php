@@ -1,4 +1,3 @@
-<?php require 'partials/header.php'; ?>
 
 <div class="row">
     <div class="col-md-8 offset-md-2" style="margin-top:5%;">
@@ -28,5 +27,4 @@
     </div>
 </div>
 
-<?php require 'partials/footer.php'; ?>
 <script src="<?= esc_url( plugins_url( '../js/participantes.js', __FILE__ ) ) ?>"></script>
