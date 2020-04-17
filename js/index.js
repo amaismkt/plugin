@@ -19,7 +19,7 @@ $(document).ready(() => {
         })
         .fail( error => $('#alert').show());
     }
-
+    
 
     makeCard = (name) => {
         const row = document.getElementById("cards-row");
