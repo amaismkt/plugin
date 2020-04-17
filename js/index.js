@@ -46,16 +46,12 @@ $(document).ready(() => {
     }
 
     editEvent = id => {
-        if(flag){
-            alert("flagado")
-        }else{
-            alert("nao flagado")
-        }
+        window.localStorage.setItem("id", id)
+        window.location.assign("teste")
     }
     
     deleteEvent = id => {
         $(`#${id}-card`).fadeOut(400)
-        let flag = true;
         return
     }
 

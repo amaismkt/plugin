@@ -8,6 +8,12 @@ Author URI: http://amaismkt.com.br
 */
 
 add_action('admin_menu', 'my_admin_menu');
+add_action('edit', 'edit');
+
+function edit()
+{
+    require 'views/evento.php';
+}
 
 function my_admin_menu()
 {
