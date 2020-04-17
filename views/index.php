@@ -12,16 +12,8 @@
 
     <h3 style="text-align: center;"><i class="fa fa-calendar"></i> Seus eventos: </h3>
 
-    <div class="row">
-        <div class="col-md-3">
-            <div data-toggle="modal" data-target="#myModal" class="event-card">
-                <h4>Adicionar Evento</h4>
-                <i style="font-size: 180px; color: #d1d1d1;" class="fa fa-plus"></i>
-            </div>
-        </div>
-    </div>
     <div class="row" id="cards-row">
-    
+        
     </div>
 
 </div>
