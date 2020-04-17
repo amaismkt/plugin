@@ -46,11 +46,7 @@ $(document).ready(() => {
     }
 
     editEvent = id => {
-        if(flag){
-            alert("flagado")
-        }else{
-            alert("nao flagado")
-        }
+        alert("AIAIAI FUI ACIONADO")
     }
     
     deleteEvent = id => {
