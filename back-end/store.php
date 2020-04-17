@@ -10,25 +10,29 @@ if(!isset($wpdb))
 }
 
 $dados = $_POST["data"];
-
 $table = $wpdb->prefix."participantes";
+// Recebe o nome das colunas
+$columns = explode(",",$dados[0][0]);
+// Deleta essa linha dos dados
+unset($dados[0][0]);
 
 foreach($dados as $dado){
+    $linhas = explode(',', $dado[0]);
+    $novaLinha = [];
 
-    if($dado[0] != ''){
-
-        $atual = explode(',', $dado[0], 4);
-
-        $nome = $atual[0];
-        $cpf = $atual[1];
-        $categoria = $atual[2];
-        $carga_horaria = $atual[3];
-
-        $wpdb->insert($table, array(
-            'nome' => $nome,
-            'cpf' => $cpf,
-            'categoria' => $categoria,
-            'carga_horaria' => $carga_horaria
-        ));
+    if(!empty($dado)) {
+        // Monta o array para o sql
+        foreach ($linhas as $key => $linha) {
+            $novaLinha[$columns[$key]] = $linha;
+        }
+    
+        // Insere os dados
+        $wpdb->insert($table, $novaLinha);
+    
+        if($wpdb->last_error !== '') {
+            http_response_code(500);
+            echo $wpdb->last_error;
+            return;
+        }
     }
 }

@@ -136,17 +136,21 @@ function loadHandler(event)
 function processData(csv) 
 {
     var allTextLines = csv.split(/\r\n|\n/);
+    allTextLines[0] +=",event_id";
     var lines = [];
-    for (var i=0; i<allTextLines.length; i++) {
-        var data = allTextLines[i].split(';');
-            var tarr = [];
-            for (var j=0; j<data.length; j++) {
-                tarr.push(data[j]);
-            }
-            lines.push(tarr);
+    
+    const dataFiltered = allTextLines.filter((el) => el != null && el != "");
+
+    for (var i=0; i<dataFiltered.length; i++) {
+        var data = dataFiltered[i].split(';');
+        var tarr = [];
+        for (let j=0; j<data.length; j++) {
+            if(i!=0) { data[j]+=","+localStorage.getItem('id'); }
+            tarr.push(data[j]);
+        }
+        lines.push(tarr);
     }
     dados = {data: lines, action: true};
-    console.log(dados);
     $.post('../wp-content/plugins/congresso/back-end/store.php', dados,  response => {
     })
     .always(() => {

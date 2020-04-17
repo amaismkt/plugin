@@ -47,7 +47,9 @@ $(document).ready(() => {
 
     editEvent = id => {
         window.localStorage.setItem("id", id)
-        window.location.assign("teste")
+        // window.location.assign(`?congresso=${id}`)
+        // window.location.assign(`?page=participantes&congresso=${id}`)
+        window.location.assign(`?page=evento`)
     }
     
     deleteEvent = id => {
