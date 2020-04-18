@@ -1,5 +1,4 @@
 <?php
-
 if(!isset($wpdb)){
     //the '../' is the number of folders to go up from the current file to the root-map.
     require_once('../../../../wp-config.php');
@@ -11,12 +10,11 @@ use Dompdf\Dompdf;
 
 global $wpdb;
 $results = $wpdb->get_results( 
-    //$wpdb->prepare("SELECT * FROM {$wpdb->prefix}participantes WHERE nome='".$_REQUEST['nome']."' AND cpf='".$_REQUEST['cpf']."'", null) 
-    $wpdb->prepare("SELECT * FROM {$wpdb->prefix}participantes WHERE cpf='".$_REQUEST['cpf']."'", null) 
+    $wpdb->prepare("SELECT * FROM {$wpdb->prefix}participantes WHERE cpf='".$_REQUEST['cpf']."' AND event_id=".$_REQUEST['event_id'], null) 
 );
 
 $bloqueio = $wpdb->get_results(
-     $wpdb->prepare("SELECT * FROM {$wpdb->prefix}bloqueio ORDER BY id DESC LIMIT 1", null) 
+    $wpdb->prepare("SELECT * FROM {$wpdb->prefix}bloqueio ORDER BY id DESC LIMIT 1", null) 
 )[0];
 
 if($bloqueio->bloqueio == 1){
@@ -28,8 +26,9 @@ if(!$results){
 }
 
 $background =  $wpdb->get_results(
-    $wpdb->prepare("SELECT * FROM {$wpdb->prefix}congresso_images ORDER BY data DESC LIMIT 1", null) 
+    $wpdb->prepare("SELECT * FROM {$wpdb->prefix}congresso_images WHERE event_id=".$_REQUEST['event_id']." ORDER BY data DESC LIMIT 1", null) 
 )[0];
+
 
 setlocale(LC_TIME, 'pt_BR', 'pt_BR.utf-8', 'pt_BR.utf-8', 'portuguese');
 date_default_timezone_set('America/Sao_Paulo');

@@ -19,11 +19,18 @@ function my_admin_menu()
 {
     add_menu_page('Congresso', 'Congresso', 'manage_options', 'congresso', 'congresso', 'dashicons-admin-users', 6);
     add_submenu_page('congresso', 'Evento', 'Evento', 'manage_options', 'evento', 'edit');
+    add_submenu_page('download', 'download', 'download', 'manage_options', 'download', 'download');
 }
 
 function congresso()
 {
     require 'views/index.php';
+}
+
+
+function download()
+{
+    require 'views/download.php';
 }
 
 function get_event($id)

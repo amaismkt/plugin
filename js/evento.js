@@ -208,4 +208,12 @@ $("#desabilitar").click(() => {
 
 });
 
+$("#configuracoes").submit(() => event.preventDefault());
+
+const queryString = window.location.search;
+const urlParams = new URLSearchParams(queryString);
+const eventId = urlParams.get('evento')   
+
+$("#url").attr("href","?page=download&evento="+eventId);
+
 //

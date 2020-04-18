@@ -101,12 +101,8 @@
       
     </div>
 </div>
-  
-
 
 <script>
-    $("#configuracoes").submit(() => event.preventDefault());
-    $("#url").html("http://" + window.location.hostname + "/plugin/wp-content/plugins/congresso/download.php");
-    $("#url").attr("href", "http://" + window.location.hostname + "/plugin/wp-content/plugins/congresso/download.php");
+$("#url").html("Clique aqui");
 </script>
 <?php require 'partials/footer.php'; ?>
