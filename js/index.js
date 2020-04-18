@@ -34,12 +34,12 @@ $(document).ready(() => {
     makeCard = (name, id) => {
         $("#cards-row").append(`
             <div class="col-md-3" id="${id}-card" style="margin-bottom: 16px;">
-                <div class="event-card" onclick="editEvent(this.id)" id="${id}">
+                <div class="event-card">
                     <div class="event-card-header">
                         <h4>${name}</h4>
                         <i id="${id}" onclick="deleteEvent(this.id)" class="fa fa-trash delete-event-icon"></i>
                     </div>
-                    <i style="font-size: 100px; color: #d1d1d1; padding: 30px 0 20px 0;" class="fa fa-calendar"></i>
+                    <i style="font-size: 100px; color: #d1d1d1; padding: 30px 0 20px 0;" class="fa fa-calendar" onclick="editEvent(this.id)" id="${id}"></i>
                 </div>
             </div>
         `)

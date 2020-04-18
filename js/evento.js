@@ -166,16 +166,15 @@ function loadHandler(event)
 function processData(csv) 
 {
     var allTextLines = csv.split(/\r\n|\n/);
-    allTextLines[0] +=",event_id";
+    allTextLines[0] +=";event_id";
     var lines = [];
-    
     const dataFiltered = allTextLines.filter((el) => el != null && el != "");
 
     for (var i=0; i<dataFiltered.length; i++) {
         var data = dataFiltered[i].split(';');
         var tarr = [];
         for (let j=0; j<data.length; j++) {
-            if(i!=0) { data[j]+=","+localStorage.getItem('id'); }
+            if(i != 0) { data[j]+=`,${localStorage.getItem('id')}`}
             tarr.push(data[j]);
         }
         lines.push(tarr);
