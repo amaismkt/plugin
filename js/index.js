@@ -51,7 +51,11 @@ $(document).ready(() => {
     }
     
     deleteEvent = id => {
-        $(`#${id}-card`).fadeOut(400)
+        const data = { id: id};
+        $.post("../wp-content/plugins/congresso/back-end/deleteEvent.php", data)
+        .done(response => $(`#${id}-card`).fadeOut(400))
+        .fail(e => console.log(e));
+        
         return
     }
 
