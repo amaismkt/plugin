@@ -51,10 +51,13 @@ $(document).ready(() => {
     }
     
     deleteEvent = id => {
-        const data = { id: id};
+        let r = confirm("Tem certeza de que deseja excluir este evento?")
+        if(!r)
+            return
+        const data = { id: id}
         $.post("../wp-content/plugins/congresso/back-end/deleteEvent.php", data)
         .done(response => $(`#${id}-card`).fadeOut(400))
-        .fail(e => console.log(e));
+        .fail(e => console.log(e))
         
         return
     }
