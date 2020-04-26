@@ -42,7 +42,7 @@ $(document).ready(() => {
                         <h4>${name}</h4>
                         <i id="${id}" onclick="deleteEvent(this.id)" class="fa fa-trash delete-event-icon"></i>
                     </div>
-                    <i style="font-size: 100px; color: #d1d1d1; padding: 30px 0 20px 0;" class="fa fa-calendar" onclick="editEvent(this.id)" id="${id}"></i>
+                    <i style="display: block !important; font-size: 100px; color: #d1d1d1; padding: 30px 0 20px 0;" class="fa fa-calendar" onclick="editEvent(this.id)" id="${id}"></i>
                 </div>
             </div>
         `)
