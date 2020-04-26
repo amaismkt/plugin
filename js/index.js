@@ -6,7 +6,10 @@ $(document).ready(() => {
         const data = $("#add-event-form").serialize()
 
         $.post("../wp-content/plugins/congresso/back-end/storeNewEvent.php", data)
-            .done(data => getEvents())
+            .done(data => {
+                getEvents()
+                alert("Evento cadastrado com sucesso!")
+            })
             .fail(error => $('#alert').show())
     })
 
