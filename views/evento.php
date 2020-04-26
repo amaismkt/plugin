@@ -5,7 +5,7 @@
 <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.4.1/js/bootstrap.min.js"></script>
 <div class="row menu">
     <div class="col-md-12">
-        <button id="botao-editar" class="button" disabled>Editar</button>
+        <button id="botao-editar" class="button" disabled>Evento</button>
         <button id="botao-participantes" class="button" >Participantes</button>
         <button id="botao-certificado" class="button">Certificado</button>
         <button type="button" class="button" data-toggle="modal" data-target="#myModal">Gerar Link</button>
@@ -26,11 +26,12 @@
     </div>
 </div>
 
-<div class="col-md-8 offset-md-2 canvas" id="campo-editar">
+<div class="col-md-4 offset-md-4 canvas" id="campo-editar">
     <form id="evento" class="form-arquivo">
-        <input type="text" name="nome" value="<?php echo get_event($_GET['evento'])[0]->nome; ?>">
+        <h3><i class="fa fa-calendar"></i> Nome do evento</h3>
+        <input type="text" style="width: 80%;" name="nome" value="<?php echo get_event($_GET['evento'])[0]->nome; ?>">
         <input type="number" name="id" value="<?php echo $_GET['evento']; ?>" hidden>
-        <button id="botao-edicao" class="button button-primary" type="button" value=""></i> Editar</button>
+        <button id="botao-edicao" class="button button-primary" type="button" value=""></i> Salvar</button>
         <i class="fa fa-spinner fa-spin" id="loading" aria-hidden="true"></i>
     </form>
 </div>
