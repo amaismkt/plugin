@@ -17,7 +17,7 @@
         <div class="row" style="margin-top: 4%;">
             <div class="col-md-6 offset-md-3" style="background-color:white; padding: 2%; border-radius: 10px;"> 
                 <form action="/wp-content/plugins/congresso/back-end/pdf.php" id="dados" method="GET">
-                    <h3 style="text-align:center;"><img src="/wp-content/plugins/congresso/img/certificado.png" alt="certificado" width="150px">Baixe seu certificado:</h3>
+                    <h3 style="text-align:center;"><img src="/wp-content/plugins/congresso/img/certificado.png" width="150px"> Baixe seu certificado:</h3>
                     <input type="text" name="nome" class="form-control" placeholder="Seu nome completo..." required>
                     <input type="text" name="cpf" class="form-control" placeholder="Seu CPF" id="cpf" style="margin-top:16px" required>
                     <input type="number" name="event_id" class="form-control" value="<?php echo $_GET['evento']?>" hidden>

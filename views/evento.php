@@ -5,6 +5,7 @@
 <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.4.1/js/bootstrap.min.js"></script>
 <div class="row menu">
     <div class="col-md-12">
+        <h2 style="margin-bottom: 20px;"><i class="fa fa-edit"></i> Você está editando o evento <?php echo get_event($_GET['evento'])[0]->nome; ?></h2>
         <button id="botao-editar" class="button" disabled>Evento</button>
         <button id="botao-participantes" class="button" >Participantes</button>
         <button id="botao-certificado" class="button">Certificado</button>

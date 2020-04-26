@@ -123,7 +123,10 @@ $(document).ready(() => {
         
         $.post("../wp-content/plugins/congresso/back-end/updateEvent.php", dados)
         .always(() => $("#config-loader").hide())
-        .done( () => alert("Editado com sucesso"))
+        .done( () => {
+            alert("Editado com sucesso")
+            window.location.reload()
+        })
         .fail( error => alert("Erro ao editar"));
     })
     
