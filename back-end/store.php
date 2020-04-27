@@ -18,8 +18,6 @@ $dados = $_POST["data"];
 $table = $wpdb->prefix."participantes";
 // Recebe o nome das colunas
 
-var_dump($dados);
-die();
 $columns = array_merge(explode(',',$dados[0][0]), explode(',',$dados[0][1]));
 
 foreach ($columns as $key => &$value) {
@@ -37,6 +35,7 @@ foreach($dados as $dado){
         foreach ($linhas as $key => $linha) {
             $novaLinha[$columns[$key]] = $linha;
         }
+        var_dump($novaLinha);
 
         // Insere os dados
         $wpdb->insert($table, $novaLinha);
@@ -47,4 +46,6 @@ foreach($dados as $dado){
             return;
         }
     }
+
+
 }
