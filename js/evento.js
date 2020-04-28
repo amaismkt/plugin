@@ -214,8 +214,15 @@ $("#configuracoes").submit(() => event.preventDefault());
 
 const queryString = window.location.search;
 const urlParams = new URLSearchParams(queryString);
-const eventId = urlParams.get('evento')   
+const eventId = urlParams.get('evento');
 
-$("#url").attr("href","?page=download&evento="+eventId);
+localStorage.setItem("evento", eventId);
+
+if(window.location.hostname == "localhost"){
+    $("#url").attr("href","http://" + window.location.hostname + "/plugin/wp-content/plugins/congresso/views/download.php");
+}else{
+    $("#url").attr("href","http://" + window.location.hostname + "/wp-content/plugins/congresso/views/download.php");
+}
+
 
 //

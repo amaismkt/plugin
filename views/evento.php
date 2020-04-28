@@ -94,7 +94,7 @@
         <div class="modal-body">
           <p>Para disponibilizar o link para os participantes em seu site, copie a URL abaixo:</p>
           <br>
-          <a id="url" target="_new"></a>
+          <a id="url" target="_blank"></a>
         </div>
         <div class="modal-footer">
           <button type="button" class="btn btn-default" data-dismiss="modal">Fechar</button>
