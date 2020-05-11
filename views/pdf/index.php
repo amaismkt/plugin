@@ -53,7 +53,7 @@
         <h1 class="nome">
             <?php echo $results[0]->nome; ?>
         </h1>
-        <h2><?php echo $background->titulo; ?></h2>
+        <h2><?php echo $evento->nome; ?></h2>
         <br><span>Carga horária: <?php echo $results[0]->carga_horaria; ?>.</span>
     </div>
 </body>

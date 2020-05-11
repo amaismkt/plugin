@@ -29,6 +29,10 @@ $background =  $wpdb->get_results(
     $wpdb->prepare("SELECT * FROM {$wpdb->prefix}congresso_images WHERE event_id=".$_REQUEST['event_id']." ORDER BY data DESC LIMIT 1", null) 
 )[0];
 
+$evento =  $wpdb->get_results(
+    $wpdb->prepare("SELECT * FROM {$wpdb->prefix}eventos WHERE id=".$_REQUEST['event_id']." LIMIT 1", null) 
+)[0];
+
 
 setlocale(LC_TIME, 'pt_BR', 'pt_BR.utf-8', 'pt_BR.utf-8', 'portuguese');
 date_default_timezone_set('America/Sao_Paulo');
