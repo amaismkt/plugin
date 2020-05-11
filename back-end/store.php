@@ -33,7 +33,14 @@ foreach($dados as $dado){
     if(!empty($dado)) {
         // Monta o array para o sql
         foreach ($linhas as $key => $linha) {
-            $novaLinha[$columns[$key]] = $linha;
+            // Validação de CPF
+            if($key == 1){
+                $linha = str_replace(".", "", $linha);
+                $novaLinha[$columns[$key]] = str_replace("-", "", $linha);
+            }else{
+                $novaLinha[$columns[$key]] = $linha;
+            }
+           
         }
         var_dump($novaLinha);
 

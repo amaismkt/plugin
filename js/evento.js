@@ -193,6 +193,7 @@ function processData(csv)
     })
     .done(() => {
         alert("Importação realizada com sucesso!");
+        window.location.reload();
     });
 }
 
