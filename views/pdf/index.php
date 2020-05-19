@@ -54,7 +54,7 @@
             <?php echo $results[0]->nome; ?>
         </h1>
         <h2><?php echo $background->titulo; ?></h2>
-        <br><span>Carga horária: <?php echo $results[0]->carga_horaria; ?>.</span>
+        <br><span>Carga horária: <?php echo $results[0]->carga_horaria; ?></span>
         <br><span>Categoria: <?php echo $results[0]->categoria; ?></span>
     </div>
 </body>
