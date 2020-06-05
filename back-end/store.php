@@ -36,6 +36,8 @@ foreach($dados as $dado){
             // Validação de CPF
             if($key == 1){
                 $linha = str_replace(".", "", $linha);
+                $linha = str_replace("-", "", $linha);
+                $linha = substr($linha, 0, 10);
                 $novaLinha[$columns[$key]] = str_replace("-", "", $linha);
             }else{
                 $novaLinha[$columns[$key]] = $linha;
