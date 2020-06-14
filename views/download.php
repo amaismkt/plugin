@@ -30,15 +30,9 @@
 <script src="https://code.jquery.com/jquery-3.4.1.js" integrity="sha256-WpOohJOqMqqyKL9FccASB9O0KwACQJpFTUBLTYOVvVU=" crossorigin="anonymous"></script>
 <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery.mask/1.14.16/jquery.mask.js"></script>
 <script>
-    $(document).ready(() => {
-        if(window.location.hostname == "localhost"){
-            $("#icone-certificado").attr("src", "/plugin/wp-content/plugins/congresso/img/certificado.png");
-            $("#dados").attr("action", "/plugin/wp-content/plugins/congresso/back-end/pdf.php");
-        }
-
-        let id_evento = localStorage.getItem("evento");
-        $("#event_id").val(id_evento);
-    });
+    let id_evento = localStorage.getItem("evento");
+    console.log("Id do evento (local storage): ",id_evento)
+    $("#event_id").val(id_evento);
 
     $("#cpf").mask("000.000.000-00");
 
@@ -50,6 +44,12 @@
         cpf = cpf.replace('-', '');
         $("#cpf").val(cpf);
 
+    });
+    $(document).ready(() => {
+        if(window.location.hostname == "localhost"){
+            $("#icone-certificado").attr("src", "/plugin/wp-content/plugins/congresso/img/certificado.png");
+            $("#dados").attr("action", "/plugin/wp-content/plugins/congresso/back-end/pdf.php");
+        }
     });
 </script>
 </html>

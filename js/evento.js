@@ -1,5 +1,16 @@
 $(document).ready(() => {
 
+    // seta o event id no localstorage
+    const queryString = window.location.search;
+    const urlParams = new URLSearchParams(queryString);
+    const eventId = urlParams.get('evento');
+
+    localStorage.setItem("evento", eventId);
+    console.log("set item ",eventId)
+
+    let asd = localStorage.getItem("evento");
+    console.log("get item ",asd)
+
     // verfica o campo "Desabilitar download de certificados"
     $.get("../wp-content/plugins/congresso/back-end/verifyBlock.php", data => {
         if(JSON.parse(data)?.bloqueio == 1){
@@ -213,16 +224,10 @@ $("#desabilitar").click(() => {
 
 $("#configuracoes").submit(() => event.preventDefault());
 
-const queryString = window.location.search;
-const urlParams = new URLSearchParams(queryString);
-const eventId = urlParams.get('evento');
-
-localStorage.setItem("evento", eventId);
-
 if(window.location.hostname == "localhost"){
     $("#url").attr("href","http://" + window.location.hostname + "/plugin/wp-content/plugins/congresso/views/download.php");
 }else{
-    $("#url").attr("href","http://" + window.location.hostname + "/wp-content/plugins/congresso/views/download.php");
+    $("#url").attr("href","https://" + window.location.hostname + "/wp-content/plugins/congresso/views/download.php");
 }
 
 
