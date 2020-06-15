@@ -30,9 +30,12 @@
 <script src="https://code.jquery.com/jquery-3.4.1.js" integrity="sha256-WpOohJOqMqqyKL9FccASB9O0KwACQJpFTUBLTYOVvVU=" crossorigin="anonymous"></script>
 <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery.mask/1.14.16/jquery.mask.js"></script>
 <script>
-    let id_evento = localStorage.getItem("evento");
-    console.log("Id do evento (local storage): ",id_evento)
-    $("#event_id").val(id_evento);
+    const queryString = window.location.search;
+    const urlParams = new URLSearchParams(queryString);
+    const eventId = urlParams.get('evento');
+    console.log("Id do evento: ",eventId);
+
+    $("#event_id").val(eventId);
 
     $("#cpf").mask("000.000.000-00");
 
