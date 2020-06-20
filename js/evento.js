@@ -215,9 +215,9 @@ const eventId = urlParams.get('evento');
 $("#configuracoes").submit(() => event.preventDefault());
 
 if(window.location.hostname == "localhost"){
-    $("#url").attr("href","http://" + window.location.hostname + "/plugin/wp-content/plugins/congresso/views/download.php?evento=" + eventId);
+    $("#url").attr("href","http://" + window.location.hostname + "/plugin/wp-content/plugins/congresso/views/download.php?evento=" + eventId + "&nomeEvento=" + localStorage.getItem("nomeDoEvento"));
 }else{
-    $("#url").attr("href","https://" + window.location.hostname + "/wp-content/plugins/congresso/views/download.php?evento=" + eventId);
+    $("#url").attr("href","https://" + window.location.hostname + "/wp-content/plugins/congresso/views/download.php?evento=" + eventId + "&nomeEvento=" + localStorage.getItem("nomeDoEvento"));
 }
 
 

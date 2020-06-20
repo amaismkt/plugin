@@ -10,6 +10,21 @@
         body{
             background-color: #e1e5e7;
         }
+        #nomeEvento{
+            width: 100% !important;
+            font-size: 32px;
+            margin-bottom: 32px;
+            text-align: center !important;
+            text-transform: uppercase;
+        }
+        button{
+            background-color: #E6007E !important;
+            border-color: #E6007E !important;
+        }
+        button:hover{
+            background-color: #E6007E !important;
+            border-color: #E6007E !important;
+        }
     </style>
 </head>
 <body>
@@ -17,6 +32,7 @@
         <div class="row" style="margin-top: 4%;">
             <div class="col-md-6 offset-md-3" style="background-color:white; padding: 2%; border-radius: 10px;"> 
                 <form action="/wp-content/plugins/congresso/back-end/pdf.php" id="dados" method="GET">
+                    <div id="nomeEvento"></div>
                     <h3 style="text-align:center;"><img id="icone-certificado" src="/wp-content/plugins/congresso/img/certificado.png" width="150px"> Baixe seu certificado:</h3>
                     <input type="text" name="nome" class="form-control" placeholder="Seu nome completo..." required>
                     <input type="text" name="cpf" class="form-control" placeholder="Seu CPF" id="cpf" style="margin-top:16px" required>
@@ -33,9 +49,10 @@
     const queryString = window.location.search;
     const urlParams = new URLSearchParams(queryString);
     const eventId = urlParams.get('evento');
-    console.log("Id do evento: ",eventId);
+    const nomeEvento = urlParams.get('nomeEvento');
 
     $("#event_id").val(eventId);
+    $("#nomeEvento").html(nomeEvento);
 
     $("#cpf").mask("000.000.000-00");
 

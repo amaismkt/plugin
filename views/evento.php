@@ -28,6 +28,7 @@
 </div>
 
 <div class="col-md-4 offset-md-4 canvas" id="campo-editar">
+    <input type="text" id="nome-evento" value="<?php echo get_event($_GET['evento'])[0]->nome ?>" hidden />
     <form id="evento" class="form-arquivo">
         <h3><i class="fa fa-calendar"></i> Nome do evento</h3>
         <input type="text" style="width: 80%;" name="nome" value="<?php echo get_event($_GET['evento'])[0]->nome; ?>">
@@ -106,5 +107,6 @@
 
 <script>
 $("#url").html("Clique aqui");
+localStorage.setItem("nomeDoEvento", $("#nome-evento").val())
 </script>
 <?php require 'partials/footer.php'; ?>
