@@ -114,6 +114,7 @@ function congresso_tables()
                 `cpf` varchar(255) NOT NULL,
                 `carga_horaria` varchar(255) NOT NULL,
                 `categoria` varchar(255) NOT NULL,
+                `validation_code` varchar(255) NOT NULL,    
                 PRIMARY KEY(id)
             );
         ";

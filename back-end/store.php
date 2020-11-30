@@ -51,6 +51,7 @@ foreach($dados as $dado){
         var_dump($novaLinha);
 
         // Insere os dados
+        $novaLinha["validation_code"] = mt_rand(10000000, 99999999);
         $wpdb->insert($table, $novaLinha);
         
         if($wpdb->last_error !== '') {

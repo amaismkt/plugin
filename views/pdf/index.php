@@ -56,6 +56,7 @@
         <h2><?php echo $background->titulo; ?></h2>
         <br><span>Carga horária: <?php echo $results[0]->carga_horaria; ?></span>
         <br><span>Categoria: <?php echo $results[0]->categoria; ?></span>
+        <br><span>Código: <?php echo $results[0]->validation_code; ?></span>
     </div>
 </body>
 </html>
