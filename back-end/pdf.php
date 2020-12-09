@@ -34,13 +34,11 @@ $evento =  $wpdb->get_results(
 )[0];
 
 if($_SERVER["HTTP_HOST"] == "localhost") {
-    $path = "https://api.qrserver.com/v1/create-qr-code/?size=150x150&data="
-    ."https://sogirgs.org.br/wp-content/plugins/congresso/views/validacao.php?code="
+    $path = "https://api.qrserver.com/v1/create-qr-code/?size=150x150&data=localhost/plugin/wp-content/plugins/congresso/views/validacao%2Ephp?code="
     .$results[0]->validation_code;
 }
 else {
-    $path = "https://api.qrserver.com/v1/create-qr-code/?size=150x150&data="
-    ."localhost/plugin/wp-content/plugins/congresso/views/validacao.php?code="
+    $path = "https://api.qrserver.com/v1/create-qr-code/?size=150x150&data=https://sogirgs.org.br/wp-content/plugins/congresso/views/validacao%2Ephp?code="
     .$results[0]->validation_code;
 }
 

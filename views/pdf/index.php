@@ -44,8 +44,8 @@
         padding-top: 40px;
     }
     .qrcodeimg {
-        width: 100px;
-        height: 100px;
+        width: 150px;
+        height: 150px;
         text-align: center;
     }
 </style>
