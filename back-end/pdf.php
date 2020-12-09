@@ -33,6 +33,10 @@ $evento =  $wpdb->get_results(
     $wpdb->prepare("SELECT * FROM {$wpdb->prefix}eventos WHERE id=".$_REQUEST['event_id']." LIMIT 1", null) 
 )[0];
 
+$path = "https://api.qrserver.com/v1/create-qr-code/?size=150x150&data=".$results[0]->validation_code;;
+$type = pathinfo($path, PATHINFO_EXTENSION);
+$data = file_get_contents($path);
+$base64 = 'data:image/' . $type . ';base64,' . base64_encode($data);
 
 setlocale(LC_TIME, 'pt_BR', 'pt_BR.utf-8', 'pt_BR.utf-8', 'portuguese');
 date_default_timezone_set('America/Sao_Paulo');

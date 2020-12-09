@@ -6,7 +6,6 @@
     <meta http-equiv="X-UA-Compatible" content="ie=edge">
     <title>Documento</title>
 </head>
-
 <style>
     body {
         padding: 0;
@@ -44,19 +43,25 @@
     h2 {
         padding-top: 40px;
     }
+    .qrcodeimg {
+        width: 100px;
+        height: 100px;
+        text-align: center;
+    }
 </style>
 <body>
     <div class="teste">
-        <img src="../back-end/img/<?php echo $background->nome;?>">
+        <img src="../back-end/img/<?= $background->nome;?>">
     </div>
     <div class="corpo-doc">
         <h1 class="nome">
-            <?php echo $results[0]->nome; ?>
+            <?= $results[0]->nome; ?>
         </h1>
-        <h2><?php echo $background->titulo; ?></h2>
-        <br><span>Carga horária: <?php echo $results[0]->carga_horaria; ?></span>
-        <br><span>Categoria: <?php echo $results[0]->categoria; ?></span>
-        <br><span>Código: <?php echo $results[0]->validation_code; ?></span>
+        <h2><?= $background->titulo; ?></h2>
+        <br><span>Carga horária: <?= $results[0]->carga_horaria; ?></span>
+        <br><span>Categoria: <?= $results[0]->categoria; ?></span>
+        <br><span>Código: <?= $results[0]->validation_code; ?></span>
+        <br><span><img src="<?=$base64;?>" class="qrcodeimg"/></span> 
     </div>
 </body>
 </html>
