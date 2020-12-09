@@ -83,27 +83,16 @@
 <script>
     const queryString = window.location.search;
     const urlParams = new URLSearchParams(queryString);
-    const eventId = urlParams.get('evento');
-    const nomeEvento = urlParams.get('nomeEvento');
+    const code = urlParams.get('code');
 
-    $("#event_id").val(eventId);
-    $("#nomeEvento").html(nomeEvento);
-
-    $("#cpf").mask("000.000.000-00");
-
-    $("#dados").submit(() => {
-
-        let cpf = $("#cpf").val();
-        cpf = cpf.replace('.', '');
-        cpf = cpf.replace('.', '');
-        cpf = cpf.replace('-', '');
-        $("#cpf").val(cpf);
-
-    });
     $(document).ready(() => {
         if(window.location.hostname == "localhost"){
             $("#icone-certificado").attr("src", "/plugin/wp-content/plugins/congresso/img/certificado.png");
             $("#dados").attr("action", "/plugin/wp-content/plugins/congresso/back-end/validation.php");
+        }
+
+        if(code) {
+            $("#validation_code").val(code);
         }
     });
 </script>

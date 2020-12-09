@@ -33,7 +33,17 @@ $evento =  $wpdb->get_results(
     $wpdb->prepare("SELECT * FROM {$wpdb->prefix}eventos WHERE id=".$_REQUEST['event_id']." LIMIT 1", null) 
 )[0];
 
-$path = "https://api.qrserver.com/v1/create-qr-code/?size=150x150&data=".$results[0]->validation_code;;
+if($_SERVER["HTTP_HOST"] == "localhost") {
+    $path = "https://api.qrserver.com/v1/create-qr-code/?size=150x150&data="
+    ."https://sogirgs.org.br/wp-content/plugins/congresso/views/validacao.php?code="
+    .$results[0]->validation_code;
+}
+else {
+    $path = "https://api.qrserver.com/v1/create-qr-code/?size=150x150&data="
+    ."localhost/plugin/wp-content/plugins/congresso/views/validacao.php?code="
+    .$results[0]->validation_code;
+}
+
 $type = pathinfo($path, PATHINFO_EXTENSION);
 $data = file_get_contents($path);
 $base64 = 'data:image/' . $type . ';base64,' . base64_encode($data);
