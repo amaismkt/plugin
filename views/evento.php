@@ -194,10 +194,10 @@ if(window.location.hostname == "localhost"){
 else {
     $("#validacao").attr(
         "href",
-        "http://" + window.location.hostname + "/wp-content/plugin/wp-content/plugins/congresso/views/validacao.php"
+        "http://" + window.location.hostname + "/wp-content/plugins/congresso/views/validacao.php"
     );
 }
 $("#url").html("Clique aqui");
-localStorage.setItem("nomeDoEvento", $("#nome-evento").val())
+localStorage.setItem("nomeDoEvento", $("#nome-evento").val());
 </script>
 <?php require 'partials/footer.php'; ?>

@@ -44,9 +44,18 @@
         padding-top: 40px;
     }
     .qrcodeimg {
-        width: 150px;
-        height: 150px;
+        width: 100px;
+        left: 30px;
+        top: 100px;
+        height: 100px;
         text-align: center;
+    }
+    .codenumber {
+        left: 30px;
+        top: 210px;
+        font-weight: bold;
+        position: fixed;
+        text-align: left;
     }
 </style>
 <body>
@@ -60,8 +69,8 @@
         <h2><?= $background->titulo; ?></h2>
         <br><span>Carga horária: <?= $results[0]->carga_horaria; ?></span>
         <br><span>Categoria: <?= $results[0]->categoria; ?></span>
-        <br><span>Código: <?= $results[0]->validation_code; ?></span>
-        <br><span><img src="<?=$base64;?>" class="qrcodeimg"/></span> 
+        <img src="<?=$base64;?>" class="qrcodeimg"/>
+        <span class="codenumber"><?= $results[0]->validation_code; ?></span>
     </div>
 </body>
 </html>
