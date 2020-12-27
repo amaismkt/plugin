@@ -137,7 +137,22 @@
                 required 
                 value="<?php echo get_event_image($_GET['evento'])[0]->titulo; ?>"
             >
-        </div>        
+        </div>
+        
+        <div class="row" style="margin-top: 26px;">
+            <label class="col-md-4" for="locale">
+                <b><i class="fa fa-tag"></i> Localidade: </b>
+            </label>
+            <input 
+                class="col-md-8" 
+                type="text" 
+                id="locale" 
+                class="form-control" 
+                name="locale" 
+                required 
+                value="<?php echo get_event_image($_GET['evento'])[0]->localidade; ?>"
+            >
+        </div>
 
         <div class="row" style="margin-top: 46px;">
             <div class="col-md-1"></div>

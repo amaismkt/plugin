@@ -21,7 +21,7 @@ $(document).ready(() => {
 
     // salva configurações personalizadas do certificado
     $("#salvar-configuracoes").click(() => {
-
+        console.log("executando trigger...");
         $("#config-loader").show();
 
         if($("#background_image").val() == ''){
@@ -32,22 +32,25 @@ $(document).ready(() => {
         let dados = uploadImage();
 
         $.ajax({
-        url: '../wp-content/plugins/congresso/back-end/storeConfig.php',
-        type: 'post',
-        data: dados,
-        dataType: 'json',
-        contentType: false,
-        processData: false,
-        success: function(response){
-            $("#config-loader").hide();
-            if(response == 0){
-                alert('Ocorreu um erro ao enviar a imagem');
-            }else{
-                alert('Configurações salvas com sucesso!');
+            url: '../wp-content/plugins/congresso/back-end/storeConfig.php',
+            type: 'post',
+            data: dados,
+            dataType: 'json',
+            contentType: false,
+            processData: false,
+            success: function(response) {
+                $("#config-loader").hide();
+                if(response == 0){
+                    alert('Ocorreu um erro ao enviar a imagem');
+                }else{
+                    alert('Configurações salvas com sucesso!');
+                }
+            },
+            error: function(response) {
+                console.error(response);
+                $("#config-loader").hide();
             }
-        },
-    })
-
+        });
     });
     
     // verifica se o formato do arquivo é CSV
@@ -140,6 +143,7 @@ function uploadImage()
     let files = $('#background_image')[0].files[0];
     fd.append('file',files);
     fd.append('titulo', $("#title").val());
+    fd.append('localidade', $("#locale").val());
 
     const queryString = window.location.search;
     const urlParams = new URLSearchParams(queryString);

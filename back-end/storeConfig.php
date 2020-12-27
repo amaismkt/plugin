@@ -37,21 +37,22 @@ if(isset($_FILES['file']) && $_FILES['file']['size'] > 0){
                 require_once('../../../../wp-includes/wp-db.php');
             }
 
-            $table = $wpdb->prefix."congresso_images";
+            $table_name = $wpdb->prefix."congresso_images";
 
             $results = $wpdb->get_row("SELECT * FROM $table_name WHERE event_id = ".$_REQUEST['event_id']);
 
             $dados = array(
                 'nome' => $nome_escudo,
                 'titulo' => $_REQUEST['titulo'],
-                'event_id' => $_REQUEST['event_id']
+                'event_id' => $_REQUEST['event_id'],
+                'localidade' => $_REQUEST['localidade']
             );
 
             if ($results) {
                 // Upadate data
-                $wpdb->update($table_name, $dados, array('event_id' => $results->id));
+                $wpdb->update($table_name, $dados, array('event_id' => $results->event_id));
             } else {
-                $wpdb->insert($table, $dados);
+                $wpdb->insert($table_name, $dados);
             }
 
             if($wpdb->last_error !== '') {

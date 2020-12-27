@@ -69,6 +69,9 @@
         <h2><?= $background->titulo; ?></h2>
         <br><span>Carga horária: <?= $results[0]->carga_horaria; ?></span>
         <br><span>Categoria: <?= $results[0]->categoria; ?></span>
+        <?php if($background->localidade): ?>
+            <br><span>Localidade: <?= $background->localidade; ?></span>
+        <?php endif; ?>
         <img src="<?=$base64;?>" class="qrcodeimg"/>
         <span class="codenumber"><?= $results[0]->validation_code; ?></span>
     </div>
