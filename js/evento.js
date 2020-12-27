@@ -29,7 +29,7 @@ $(document).ready(() => {
             return;
         }
 
-        let dados = uploadImage();
+        let dados = appendDataAndImage();
 
         $.ajax({
             url: '../wp-content/plugins/congresso/back-end/storeConfig.php',
@@ -137,13 +137,14 @@ $(document).ready(() => {
 });
 
 // faz o upload da imagem de fundo do certificado
-function uploadImage()
+function appendDataAndImage()
 {
     let fd = new FormData();
     let files = $('#background_image')[0].files[0];
     fd.append('file',files);
     fd.append('titulo', $("#title").val());
     fd.append('localidade', $("#locale").val());
+    fd.append('qrcode_text', $("#qrcode_text").val());
 
     const queryString = window.location.search;
     const urlParams = new URLSearchParams(queryString);

@@ -141,7 +141,7 @@
         
         <div class="row" style="margin-top: 26px;">
             <label class="col-md-4" for="locale">
-                <b><i class="fa fa-tag"></i> Localidade: </b>
+                <b><i class="fa fa-map-marker"></i> Localidade: </b>
             </label>
             <input 
                 class="col-md-8" 
@@ -151,6 +151,21 @@
                 name="locale" 
                 required 
                 value="<?php echo get_event_image($_GET['evento'])[0]->localidade; ?>"
+            >
+        </div>
+
+        <div class="row" style="margin-top: 26px;">
+            <label class="col-md-4" for="qrcode_text">
+                <b><i class="fa fa-qrcode"></i> Legenda QR Code: </b>
+            </label>
+            <input 
+                class="col-md-8" 
+                type="text" 
+                id="qrcode_text" 
+                class="form-control" 
+                name="qrcode_text" 
+                required 
+                value="<?php echo get_event_image($_GET['evento'])[0]->qrcode_text; ?>"
             >
         </div>
 
