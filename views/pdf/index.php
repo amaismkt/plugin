@@ -78,7 +78,10 @@
         <br><span>Carga horária: <?= $results[0]->carga_horaria; ?></span>
         <br><span>Categoria: <?= $results[0]->categoria; ?></span>
         <?php if($background->localidade): ?>
-            <br><span>Localidade: <?= $background->localidade; ?></span>
+            <br>
+            <br>
+            <br>
+            <span><?= $background->localidade; ?></span>
         <?php endif; ?>
         <div class="qrcode">
             <div class="qrcode_text"><?= $background->qrcode_text; ?></div>
