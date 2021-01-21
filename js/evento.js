@@ -140,6 +140,7 @@ function uploadImage()
     let files = $('#background_image')[0].files[0];
     fd.append('file',files);
     fd.append('titulo', $("#title").val());
+    fd.append('localidade', $("#locale").val());
 
     const queryString = window.location.search;
     const urlParams = new URLSearchParams(queryString);

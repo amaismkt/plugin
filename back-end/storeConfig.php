@@ -44,7 +44,8 @@ if(isset($_FILES['file']) && $_FILES['file']['size'] > 0){
             $dados = array(
                 'nome' => $nome_escudo,
                 'titulo' => $_REQUEST['titulo'],
-                'event_id' => $_REQUEST['event_id']
+                'event_id' => $_REQUEST['event_id'],
+                'localidade' => $_REQUEST['localidade']
             );
 
             if ($results) {
