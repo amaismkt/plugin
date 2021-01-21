@@ -21,7 +21,7 @@ $(document).ready(() => {
 
     // salva configurações personalizadas do certificado
     $("#salvar-configuracoes").click(() => {
-
+        console.log("executando trigger...");
         $("#config-loader").show();
 
         if($("#background_image").val() == ''){
@@ -29,25 +29,28 @@ $(document).ready(() => {
             return;
         }
 
-        let dados = uploadImage();
+        let dados = appendDataAndImage();
 
         $.ajax({
-        url: '../wp-content/plugins/congresso/back-end/storeConfig.php',
-        type: 'post',
-        data: dados,
-        dataType: 'json',
-        contentType: false,
-        processData: false,
-        success: function(response){
-            $("#config-loader").hide();
-            if(response == 0){
-                alert('Ocorreu um erro ao enviar a imagem');
-            }else{
-                alert('Configurações salvas com sucesso!');
+            url: '../wp-content/plugins/congresso/back-end/storeConfig.php',
+            type: 'post',
+            data: dados,
+            dataType: 'json',
+            contentType: false,
+            processData: false,
+            success: function(response) {
+                $("#config-loader").hide();
+                if(response == 0){
+                    alert('Ocorreu um erro ao enviar a imagem');
+                }else{
+                    alert('Configurações salvas com sucesso!');
+                }
+            },
+            error: function(response) {
+                console.error(response);
+                $("#config-loader").hide();
             }
-        },
-    })
-
+        });
     });
     
     // verifica se o formato do arquivo é CSV
@@ -134,13 +137,14 @@ $(document).ready(() => {
 });
 
 // faz o upload da imagem de fundo do certificado
-function uploadImage()
+function appendDataAndImage()
 {
     let fd = new FormData();
     let files = $('#background_image')[0].files[0];
     fd.append('file',files);
     fd.append('titulo', $("#title").val());
     fd.append('localidade', $("#locale").val());
+    fd.append('qrcode_text', $("#qrcode_text").val());
 
     const queryString = window.location.search;
     const urlParams = new URLSearchParams(queryString);
@@ -184,7 +188,7 @@ function processData(csv)
         lines.push(tarr);
     }
     dados = {data: lines, action: true};
-    $.post('../wp-content/plugins/congresso/back-end/store.php', dados,  response => {
+    $.post('../wp-content/plugins/congresso/back-end/store.php', dados,  () => {
     })
     .always(() => {
         $("#loading").css('opacity', '0');

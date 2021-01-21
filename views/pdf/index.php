@@ -33,7 +33,7 @@
         padding-top: -30px;
     }
 
-    img {
+    .background {
         width: 1125px;
         position: absolute;
         left: -45px;
@@ -45,22 +45,30 @@
     }
     .qrcodeimg {
         width: 100px;
+        margin-top: 8px;
+    }
+    .qrcode_text {
+        text-align: justify !important;
+        font-size: 10px;
+        line-height: 11px !important;
+        font-weight: bold;
+    }
+    .qrcode {
+        position: fixed;
+        text-align: left;
+        width: 140px;
         left: 30px;
-        top: 100px;
-        height: 100px;
-        text-align: center;
+        top: 20px;
     }
     .codenumber {
-        left: 30px;
-        top: 210px;
         font-weight: bold;
-        position: fixed;
+        margin-top: 16px;
         text-align: left;
     }
 </style>
 <body>
-    <div class="teste">
-        <img src="../back-end/img/<?= $background->nome;?>">
+    <div>
+        <img class="background" src="../back-end/img/<?= $background->nome;?>">
     </div>
     <div class="corpo-doc">
         <h1 class="nome">
@@ -69,9 +77,18 @@
         <h2><?= $background->titulo; ?></h2>
         <br><span>Carga horária: <?= $results[0]->carga_horaria; ?></span>
         <br><span>Categoria: <?= $results[0]->categoria; ?></span>
-        <br><br><span>Localidade: <?= $results[0]->localidade; ?></span>
-        <img src="<?=$base64;?>" class="qrcodeimg"/>
-        <span class="codenumber"><?= $results[0]->validation_code; ?></span>
+        <?php if($background->localidade): ?>
+            <br>
+            <br>
+            <br>
+            <span><?= $background->localidade; ?></span>
+        <?php endif; ?>
+        <div class="qrcode">
+            <div class="qrcode_text"><?= $background->qrcode_text; ?></div>
+            <br>
+            <img src="<?=$base64;?>" class="qrcodeimg"/>
+            <span class="codenumber"><?= $results[0]->validation_code; ?></span>
+        </div>
     </div>
 </body>
 </html>

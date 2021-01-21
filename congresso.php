@@ -86,6 +86,7 @@ function images_tables()
                 `nome` varchar(255) NOT NULL,
                 `data` DATETIME NOT NULL DEFAULT CURRENT_TIMESTAMP,
                 `titulo` varchar(255) NOT NULL,
+                `qrcode_text` text NOT NULL,
                 `localidade` varchar(255) NOT NULL,
                 `frase_bloqueio` varchar(255) NOT NULL,
                 PRIMARY KEY(id)
