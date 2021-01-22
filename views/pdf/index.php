@@ -48,10 +48,9 @@
         margin-top: 8px;
     }
     .qrcode_text {
-        text-align: justify !important;
+        text-align: left !important;
         font-size: 10px;
         line-height: 11px !important;
-        font-weight: bold;
     }
     .qrcode {
         position: fixed;
@@ -77,11 +76,11 @@
         <h2><?= $background->titulo; ?></h2>
         <br><span>Carga horária: <?= $results[0]->carga_horaria; ?></span>
         <br><span>Categoria: <?= $results[0]->categoria; ?></span>
-        <?php if($background->localidade): ?>
+        <?php if($background->localidade && $background->data_evento): ?>
             <br>
             <br>
             <br>
-            <span><?= $background->localidade; ?></span>
+            <span><?= $background->localidade; ?>, <?= $background->data_evento; ?>.</span>
         <?php endif; ?>
         <div class="qrcode">
             <div class="qrcode_text"><?= $background->qrcode_text; ?></div>

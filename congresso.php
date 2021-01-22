@@ -88,6 +88,7 @@ function images_tables()
                 `titulo` varchar(255) NOT NULL,
                 `qrcode_text` text NOT NULL,
                 `localidade` varchar(255) NOT NULL,
+                `data_evento` varchar(255) NOT NULL,
                 `frase_bloqueio` varchar(255) NOT NULL,
                 PRIMARY KEY(id)
             );

@@ -16,6 +16,14 @@ $results = $wpdb->get_results(
 
 $eventoId = $results[0]->event_id;
 
+$eventoInfo = $wpdb->get_results(
+    $wpdb->prepare(
+        "SELECT * 
+        FROM {$wpdb->prefix}congresso_images 
+        WHERE event_id='".$eventoId."'"
+    , null) 
+)[0];
+
 $evento = $wpdb->get_results(
     $wpdb->prepare(
         "SELECT * 

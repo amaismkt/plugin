@@ -155,6 +155,21 @@
         </div>
 
         <div class="row" style="margin-top: 26px;">
+            <label class="col-md-4" for="data_evento">
+                <b><i class="fa fa-calendar"></i> Data do Evento: </b>
+            </label>
+            <input 
+                class="col-md-8" 
+                type="text" 
+                id="data_evento" 
+                class="form-control" 
+                name="data_evento" 
+                required 
+                value="<?php echo get_event_image($_GET['evento'])[0]->data_evento; ?>"
+            >
+        </div>
+
+        <div class="row" style="margin-top: 26px;">
             <label class="col-md-4" for="qrcode_text">
                 <b><i class="fa fa-qrcode"></i> Legenda QR Code: </b>
             </label>

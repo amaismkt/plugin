@@ -43,6 +43,7 @@
         ><b>Validação do certificado: <?= $results[0]->validation_code; ?></b>
         <ul>
             <li><b>Nome:</b> <?= $results[0]->nome; ?></li>
+            <li><b>Data do evento:</b> <?= $eventoInfo->data_evento; ?></li>
             <li><b>Carga horária:</b> <?= $results[0]->carga_horaria; ?></li>
             <li><b>Categoria:</b> <?= $results[0]->categoria; ?></li>
             <li>

@@ -45,12 +45,9 @@ if(isset($_FILES['file']) && $_FILES['file']['size'] > 0){
                 'nome' => $nome_escudo,
                 'titulo' => $_REQUEST['titulo'],
                 'event_id' => $_REQUEST['event_id'],
-<<<<<<< HEAD
-                'localidade' => $_REQUEST['localidade']
-=======
                 'localidade' => $_REQUEST['localidade'],
+                'data_evento' =>$_REQUEST['data_evento'],
                 'qrcode_text' => $_REQUEST['qrcode_text']
->>>>>>> b973aab577bb2e21875c0fc3b49afc4b56e27641
             );
 
             if ($results) {
