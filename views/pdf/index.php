@@ -80,7 +80,7 @@
             <br>
             <br>
             <br>
-            <span><?= $background->localidade; ?>, <?= $background->data_evento; ?>.</span>
+            <span><?= $background->localidade; ?>.</span>
         <?php endif; ?>
         <div class="qrcode">
             <div class="qrcode_text"><?= $background->qrcode_text; ?></div>
