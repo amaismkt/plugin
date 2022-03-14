@@ -21,7 +21,8 @@ if(isset($_FILES['file']) && $_FILES['file']['size'] > 0){
         }
     
         // Monta o caminho de destino com o nome do arquivo  
-        $nome_escudo = $_FILES['file']['name'];  
+        $nome_escudo = $_FILES['file']['name'];
+        $nome_escudo_verso = $_FILES['backImg']['name'];
             
         // Essa função move_uploaded_file() copia e verifica se o arquivo enviado foi copiado com sucesso para o destino  
         if (!move_uploaded_file($_FILES['file']['tmp_name'], 'img/'. $nome_escudo)) {
@@ -29,6 +30,10 @@ if(isset($_FILES['file']) && $_FILES['file']['size'] > 0){
             echo json_encode($retorno);
             exit();  
         } else {
+            if ($nome_escudo_verso) {
+                move_uploaded_file($_FILES['backImg']['tmp_name'], 'img/'. $nome_escudo_verso);
+            }
+
             global $wpdb;
 
             if(!isset($wpdb)) {
@@ -37,12 +42,12 @@ if(isset($_FILES['file']) && $_FILES['file']['size'] > 0){
                 require_once('../../../../wp-includes/wp-db.php');
             }
 
-            $table_name = $wpdb->prefix."congresso_images";
+            $info_table_name = $wpdb->prefix."congresso_info";
+            $images_table_name = $wpdb->prefix."congresso_images";
 
-            $results = $wpdb->get_row("SELECT * FROM $table_name WHERE event_id = ".$_REQUEST['event_id']);
+            $results = $wpdb->get_row("SELECT * FROM $info_table_name WHERE event_id = ".$_REQUEST['event_id']);
 
             $dados = array(
-                'nome' => $nome_escudo,
                 'titulo' => $_REQUEST['titulo'],
                 'event_id' => $_REQUEST['event_id'],
                 'localidade' => $_REQUEST['localidade'],
@@ -50,11 +55,23 @@ if(isset($_FILES['file']) && $_FILES['file']['size'] > 0){
                 'qrcode_text' => $_REQUEST['qrcode_text']
             );
 
+            $dadosImagens = array(
+                'event_id' => $_REQUEST['event_id'],
+                'nome_arquivo' => $nome_escudo
+            );
+
             if ($results) {
-                // Upadate data
-                $wpdb->update($table_name, $dados, array('event_id' => $results->event_id));
+                $wpdb->update($info_table_name, $dados, array('event_id' => $results->event_id));
             } else {
-                $wpdb->insert($table_name, $dados);
+                $wpdb->insert($info_table_name, $dados);
+                $wpdb->insert($images_table_name, $dadosImagens);
+                if ($nome_escudo_verso) {
+                    $wpdb->insert($images_table_name, array(
+                        'event_id' => $_REQUEST['event_id'],
+                        'nome_arquivo' => $nome_escudo_verso,
+                        'verso' => 1
+                    ));
+                }
             }
 
             if($wpdb->last_error !== '') {

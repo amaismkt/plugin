@@ -8,8 +8,8 @@
 </head>
 <style>
     body {
-        padding: 0;
-        margin: 0;
+        padding: 0 !important;
+        margin: 0 !important;
         font-family: 'Roboto', sans-serif;
         background-color: red;
     }
@@ -64,30 +64,36 @@
         margin-top: 16px;
         text-align: left;
     }
+    .verso {
+        margin: 0% !important;
+        padding: 0% !important;
+        width: 100%;
+    }
 </style>
 <body>
-    <div>
-        <img class="background" src="../back-end/img/<?= $background->nome;?>">
+    <div class="page_break">
+        <img class="background" src="../back-end/img/<?= $background->nome_arquivo;?>">
     </div>
     <div class="corpo-doc">
         <h1 class="nome">
             <?= $results[0]->nome; ?>
         </h1>
-        <h2><?= $background->titulo; ?></h2>
+        <h2><?= $certificado->titulo; ?></h2>
         <br><span>Carga horária: <?= $results[0]->carga_horaria; ?></span>
         <br><span>Categoria: <?= $results[0]->categoria; ?></span>
-        <?php if($background->localidade && $background->data_evento): ?>
+        <?php if($certificado->localidade && $certificado->data_evento): ?>
             <br>
             <br>
             <br>
-            <span><?= $background->localidade; ?>.</span>
+            <span><?= $certificado->localidade; ?>.</span>
         <?php endif; ?>
         <div class="qrcode">
-            <div class="qrcode_text"><?= $background->qrcode_text; ?></div>
+            <div class="qrcode_text"><?= $certificado->qrcode_text; ?></div>
             <br>
             <img src="<?=$base64;?>" class="qrcodeimg"/>
             <span class="codenumber"><?= $results[0]->validation_code; ?></span>
         </div>
     </div>
+    <img class="verso" src="../back-end/img/<?= $backImg->nome_arquivo;?>" />
 </body>
 </html>

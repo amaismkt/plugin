@@ -26,7 +26,15 @@ if(!$results){
 }
 
 $background =  $wpdb->get_results(
-    $wpdb->prepare("SELECT * FROM {$wpdb->prefix}congresso_images WHERE event_id=".$_REQUEST['event_id']." ORDER BY data DESC LIMIT 1", null) 
+    $wpdb->prepare("SELECT * FROM {$wpdb->prefix}congresso_images WHERE event_id=".$_REQUEST['event_id']." AND VERSO = 0 ORDER BY data DESC LIMIT 1", null) 
+)[0];
+
+$backImg =  $wpdb->get_results(
+    $wpdb->prepare("SELECT * FROM {$wpdb->prefix}congresso_images WHERE event_id=".$_REQUEST['event_id']." AND VERSO = 1 ORDER BY data DESC LIMIT 1", null) 
+)[0];
+
+$certificado =  $wpdb->get_results(
+    $wpdb->prepare("SELECT * FROM {$wpdb->prefix}congresso_info WHERE event_id=".$_REQUEST['event_id']." ORDER BY data DESC LIMIT 1", null) 
 )[0];
 
 $evento =  $wpdb->get_results(

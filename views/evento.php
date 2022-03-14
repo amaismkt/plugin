@@ -117,10 +117,37 @@
                 src="<?php 
                         echo plugin_dir_url( dirname( __FILE__ ) ); 
                     ?>/back-end/img/<?php 
-                        echo get_event_image($_GET['evento'])[0]->nome; 
+                        echo get_event_image($_GET['evento'])[0]->nome_arquivo; 
                     ?>" 
                 alt="" 
                 srcset=""
+                height="200px"
+                class="miniaturePic"
+            >
+        </div>
+
+        <div class="row" style="margin-top: 26px;">
+            <label class="col-md-4" for="back_image">
+                <b><i class="fa fa-image"></i> Verso: </b>
+            </label>
+            <input 
+                type="file" 
+                class="col-md-8" 
+                id="back_image" 
+                name="back_image" 
+            />
+        </div>
+        <div class="row">
+            <img 
+                src="<?php 
+                        echo plugin_dir_url( dirname( __FILE__ ) ); 
+                    ?>/back-end/img/<?php 
+                        echo get_event_backimage($_GET['evento'])[0]->nome_arquivo; 
+                    ?>" 
+                alt="" 
+                srcset=""
+                height="200px"
+                class="miniaturePic"
             >
         </div>
         

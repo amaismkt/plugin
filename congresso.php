@@ -3,8 +3,8 @@
 Plugin Name: Congresso
 Description: Gerenciamento de participantes e certificados.
 Version: 0.1
-Author: A+
-Author URI: http://amaismkt.com.br
+Author: A+ (Lucas de Lima Monteiro)
+Author URI: http://github.com/lucaslimaaz/
 */
 
 add_action('admin_menu', 'my_admin_menu');
@@ -52,7 +52,22 @@ function get_event_image($eventId)
 
     require_once(ABSPATH . 'wp-admin/includes/upgrade.php');
 
-    $imageInfos = $wpdb->get_results("SELECT * FROM ".$wpdb->prefix."congresso_images"." WHERE event_id=".$eventId);
+    $imageInfos = $wpdb->get_results("SELECT * FROM ".$wpdb->prefix."congresso_images"." WHERE event_id=".$eventId." AND VERSO = 0 ORDER BY data DESC LIMIT 1");
+    
+    if($wpdb->last_error !== '') {
+        http_response_code(500);
+        return array("error" => $wpdb->last_error);
+    }
+    return $imageInfos;
+}
+
+function get_event_backimage($eventId)
+{
+    global $wpdb;
+
+    require_once(ABSPATH . 'wp-admin/includes/upgrade.php');
+
+    $imageInfos = $wpdb->get_results("SELECT * FROM ".$wpdb->prefix."congresso_images"." WHERE event_id=".$eventId." AND VERSO = 1 ORDER BY data DESC LIMIT 1");
     
     if($wpdb->last_error !== '') {
         http_response_code(500);
@@ -71,19 +86,18 @@ function ver_participantes($id)
 }
 
 
-function images_tables()
+function info_table()
 {
     global $wpdb;
 
     require_once(ABSPATH . 'wp-admin/includes/upgrade.php');
 
-    if(count($wpdb->get_var('SHOW TABLES LIKE "'.$wpdb->prefix.'congresso_images"')) == 0){
+    if(count($wpdb->get_var('SHOW TABLES LIKE "'.$wpdb->prefix.'congresso_info"')) == 0){
 
         $sql = "
-            CREATE TABLE `".$wpdb->prefix."congresso_images` (
+            CREATE TABLE `".$wpdb->prefix."congresso_info` (
                 `id` int(11) NOT NULL AUTO_INCREMENT,
                 `event_id` int(11) NOT NULL,
-                `nome` varchar(255) NOT NULL,
                 `data` DATETIME NOT NULL DEFAULT CURRENT_TIMESTAMP,
                 `titulo` varchar(255) NOT NULL,
                 `qrcode_text` text NOT NULL,
@@ -98,7 +112,32 @@ function images_tables()
     }
 }
 
-register_activation_hook(__FILE__, 'images_tables');
+register_activation_hook(__FILE__, 'info_table');
+
+function images_table()
+{
+    global $wpdb;
+
+    require_once(ABSPATH . 'wp-admin/includes/upgrade.php');
+
+    if(count($wpdb->get_var('SHOW TABLES LIKE "'.$wpdb->prefix.'congresso_images"')) == 0){
+
+        $sql = "
+            CREATE TABLE `".$wpdb->prefix."congresso_images` (
+                `id` int(11) NOT NULL AUTO_INCREMENT,
+                `event_id` int(11) NOT NULL,
+                `data` DATETIME NOT NULL DEFAULT CURRENT_TIMESTAMP,
+                `nome_arquivo` varchar(255) NOT NULL,
+                `verso` tinyint(1) DEFAULT 0,
+                PRIMARY KEY(id)
+            );
+        ";
+
+        dbDelta($sql);
+    }
+}
+
+register_activation_hook(__FILE__, 'images_table');
 
 function congresso_tables()
 {
@@ -106,7 +145,7 @@ function congresso_tables()
 
     require_once(ABSPATH . 'wp-admin/includes/upgrade.php');
 
-    if(count($wpdb->get_var('SHOW TABLES LIKE "'.$wpdb->prefix.'partipantes"')) == 0){
+    if(count($wpdb->get_var('SHOW TABLES LIKE "'.$wpdb->prefix.'participantes"')) == 0){
 
         $sql = "
             CREATE TABLE `".$wpdb->prefix."participantes` (
