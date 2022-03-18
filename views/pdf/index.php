@@ -65,9 +65,10 @@
         text-align: left;
     }
     .verso {
-        margin: 0% !important;
+        margin-left: -45px !important;
+        margin-top: -45px !important;
         padding: 0% !important;
-        width: 100%;
+        width: 109%;
     }
 </style>
 <body>
