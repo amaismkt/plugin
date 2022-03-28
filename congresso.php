@@ -61,6 +61,21 @@ function get_event_image($eventId)
     return $imageInfos;
 }
 
+function get_event_info($eventId)
+{
+    global $wpdb;
+
+    require_once(ABSPATH . 'wp-admin/includes/upgrade.php');
+
+    $imageInfos = $wpdb->get_results("SELECT * FROM ".$wpdb->prefix."congresso_info"." WHERE event_id=".$eventId." ORDER BY data DESC LIMIT 1");
+    
+    if($wpdb->last_error !== '') {
+        http_response_code(500);
+        return array("error" => $wpdb->last_error);
+    }
+    return $imageInfos;
+}
+
 function get_event_backimage($eventId)
 {
     global $wpdb;

@@ -162,7 +162,7 @@
                 class="form-control" 
                 name="title" 
                 required 
-                value="<?php echo get_event_image($_GET['evento'])[0]->titulo; ?>"
+                value="<?php echo get_event_info($_GET['evento'])[0]->titulo; ?>"
             >
         </div>
         
@@ -177,7 +177,7 @@
                 class="form-control" 
                 name="locale" 
                 required 
-                value="<?php echo get_event_image($_GET['evento'])[0]->localidade; ?>"
+                value="<?php echo get_event_info($_GET['evento'])[0]->localidade; ?>"
             >
         </div>
 
@@ -192,7 +192,7 @@
                 class="form-control" 
                 name="data_evento" 
                 required 
-                value="<?php echo get_event_image($_GET['evento'])[0]->data_evento; ?>"
+                value="<?php echo get_event_info($_GET['evento'])[0]->data_evento; ?>"
             >
         </div>
 
@@ -207,7 +207,7 @@
                 class="form-control" 
                 name="qrcode_text" 
                 required 
-                value="<?php echo get_event_image($_GET['evento'])[0]->qrcode_text; ?>"
+                value="<?php echo get_event_info($_GET['evento'])[0]->qrcode_text; ?>"
             >
         </div>
 
