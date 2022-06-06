@@ -171,6 +171,8 @@ function congresso_tables()
                 `cpf` varchar(255) NOT NULL,
                 `carga_horaria` varchar(255) NOT NULL,
                 `categoria` varchar(255) NOT NULL,
+                `mesa_redonda` varchar(255) NOT NULL,
+                `palestra` varchar(255) NOT NULL,
                 `validation_code` varchar(255) NOT NULL,    
                 PRIMARY KEY(id)
             );

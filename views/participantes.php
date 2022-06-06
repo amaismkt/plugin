@@ -12,6 +12,8 @@
                 <th>CPF: </th>
                 <th>Categoria: </th>
                 <th>Carga Horária: </th>
+                <th>Mesa Redonda: </th>
+                <th>Palestra: </th>
                 <th>Excluir </th>
             </tr>
             <?php foreach($participantes as $participante): ?>
@@ -20,6 +22,8 @@
                 <td><?=$participante->cpf;?></td>
                 <td><?=$participante->categoria;?></td>
                 <td><?=$participante->carga_horaria;?></td>
+                <td><?=$participante->mesa_redonda;?></td>
+                <td><?=$participante->palestra;?></td>
                 <td id="<?=$participante->id;?>" onclick="deletar(this);" class="botao-deletar"><i class="fa fa-trash"></i></td>
             </tr>
             <?php endforeach; ?>

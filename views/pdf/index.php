@@ -77,11 +77,13 @@
     </div>
     <div class="corpo-doc">
         <h1 class="nome">
-            <?= $results[0]->nome; ?>
+            <?= $participante[0]->nome; ?>
         </h1>
         <h2><?= $certificado->titulo; ?></h2>
-        <br><span>Carga horária: <?= $results[0]->carga_horaria; ?></span>
-        <br><span>Categoria: <?= $results[0]->categoria; ?></span>
+        <br><span>Carga horária: <?= $participante[0]->carga_horaria; ?></span>
+        <br><span>Categoria: <?= $participante[0]->categoria; ?></span>
+        <br><span><?= $participante[0]->mesa_redonda; ?></span>
+        <br><span><?= $participante[0]->palestra; ?></span>
         <?php if($certificado->localidade && $certificado->data_evento): ?>
             <br>
             <br>
@@ -92,7 +94,7 @@
             <div class="qrcode_text"><?= $certificado->qrcode_text; ?></div>
             <br>
             <img src="<?=$base64;?>" class="qrcodeimg"/>
-            <span class="codenumber"><?= $results[0]->validation_code; ?></span>
+            <span class="codenumber"><?= $participante[0]->validation_code; ?></span>
         </div>
     </div>
     <img class="verso" src="../back-end/img/<?= $backImg->nome_arquivo;?>" />
