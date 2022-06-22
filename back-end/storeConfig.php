@@ -1,5 +1,5 @@
 <?php
-  
+
 $nome_escudo = 'padrao.jpg';
 if(isset($_FILES['file']) && $_FILES['file']['size'] > 0){
     $extensoes_aceitas = array('bmp' ,'png', 'svg', 'jpeg', 'jpg');
@@ -84,4 +84,6 @@ if(isset($_FILES['file']) && $_FILES['file']['size'] > 0){
             echo json_encode($retorno);
         }
     }
+} else {
+    die("Problema no upload no arquivo.");
 }

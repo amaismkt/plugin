@@ -86,8 +86,6 @@
         <br><span><?= $participante[0]->palestra; ?></span>
         <?php if($certificado->localidade && $certificado->data_evento): ?>
             <br>
-            <br>
-            <br>
             <span><?= $certificado->localidade; ?>.</span>
         <?php endif; ?>
         <div class="qrcode">
