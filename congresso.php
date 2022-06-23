@@ -1,6 +1,6 @@
 <?php
 /*
-Plugin Name: Certificado
+Plugin Name: Certificados
 Description: Gerenciamento de participantes e certificados.
 Version: 0.1
 Author: A+ (Lucas de Lima Monteiro)
@@ -16,7 +16,7 @@ function edit()
 
 function my_admin_menu()
 {
-    add_menu_page('Certificado', 'Certificado', 'manage_options', 'certificado', 'certificado', 'dashicons-admin-users', 6);
+    add_menu_page('Certificados', 'Certificados', 'manage_options', 'certificado', 'certificado', 'dashicons-admin-users', 6);
     add_submenu_page('edit', 'Evento', 'Evento', 'manage_options', 'evento', 'edit');
     //add_submenu_page('download', 'download', 'download', 'read', 'download', 'download');
 }

@@ -52,7 +52,7 @@
   let currentUrl = window.location.href;
 
   function selectParticipante(id) {
-    window.location.replace(`${currentUrl}&participante_selecionado=${id}`);
+    window.open(`${currentUrl}&participante_selecionado=${id}`, '_blank');
   }
 </script>
 
