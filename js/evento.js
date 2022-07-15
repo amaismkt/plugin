@@ -221,12 +221,20 @@ const eventId = urlParams.get("evento");
 
 $("#configuracoes").submit(() => event.preventDefault());
 
+function getFolderName() {
+  let fullUri = window.location.pathname;
+  let folderName = fullUri.split("/")[1];
+  return folderName;
+}
+
 if (window.location.hostname == "localhost") {
   $("#url").attr(
     "href",
     "http://" +
       window.location.hostname +
-      "/plugin/wp-content/plugins/congresso/views/download.php?evento=" +
+      "/" +
+      getFolderName() +
+      "/wp-content/plugins/congresso/views/download.php?evento=" +
       eventId +
       "&nomeEvento=" +
       localStorage.getItem("nomeDoEvento")
@@ -235,6 +243,8 @@ if (window.location.hostname == "localhost") {
   $("#url").attr(
     "href",
     "https://" +
+      "/" +
+      getFolderName() +
       window.location.hostname +
       "/wp-content/plugins/congresso/views/download.php?evento=" +
       eventId +

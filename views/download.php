@@ -53,22 +53,26 @@
 
     $("#event_id").val(eventId);
     $("#nomeEvento").html(nomeEvento);
-
     $("#cpf").mask("000.000.000-00");
 
     $("#dados").submit(() => {
-
         let cpf = $("#cpf").val();
         cpf = cpf.replace('.', '');
         cpf = cpf.replace('.', '');
         cpf = cpf.replace('-', '');
         $("#cpf").val(cpf);
-
     });
+
+    function getFolderName() {
+        let fullUri = window.location.pathname;
+        let folderName = fullUri.split("/")[1];
+        return folderName;
+    }
+
     $(document).ready(() => {
         if(window.location.hostname == "localhost"){
-            $("#icone-certificado").attr("src", "/plugin/wp-content/plugins/congresso/img/certificado.png");
-            $("#dados").attr("action", "/plugin/wp-content/plugins/congresso/back-end/pdf.php");
+            $("#icone-certificado").attr("src", "/"+getFolderName()+"/wp-content/plugins/congresso/img/certificado.png");
+            $("#dados").attr("action", "/"+getFolderName()+"/wp-content/plugins/congresso/back-end/pdf.php");
         }
     });
 </script>

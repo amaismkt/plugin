@@ -60,11 +60,17 @@
     crossorigin="anonymous"
 ></script>
 <script>
+    function getFolderName() {
+        let fullUri = window.location.pathname;
+        let folderName = fullUri.split("/")[1];
+        return folderName;
+    }
+
     $(document).ready(() => {
         if(window.location.hostname == "localhost"){
             $("#icone-certificado").attr(
                 "src", 
-                "/plugin/wp-content/plugins/congresso/img/certificado.png"
+                "/"+getFolderName()+"/wp-content/plugins/congresso/img/certificado.png"
             );
         }
     });
