@@ -244,8 +244,8 @@ if (window.location.hostname == "localhost") {
     "href",
     "https://" +
       "/" +
-      getFolderName() +
       window.location.hostname +
+      getFolderName() +
       "/wp-content/plugins/congresso/views/download.php?evento=" +
       eventId +
       "&nomeEvento=" +
