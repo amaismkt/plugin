@@ -262,18 +262,10 @@
         let folderName = fullUri.split("/")[1];
         return folderName;
     }
-    if(window.location.hostname == "localhost"){
-        $("#validacao").attr(
+    $("#validacao").attr(
             "href",
             `http://${window.location.hostname}/${getFolderName()}/wp-content/plugins/congresso/views/validacao.php`
         );
-    }
-    else {
-        $("#validacao").attr(
-            "href",
-            "http://" + window.location.hostname + "/wp-content/plugins/congresso/views/validacao.php"
-        );
-    }
     $("#url").html("Clique aqui");
     localStorage.setItem("nomeDoEvento", $("#nome-evento").val());
 </script>

@@ -243,9 +243,9 @@ if (window.location.hostname == "localhost") {
   $("#url").attr(
     "href",
     "https://" +
+      window.location.hostname +
       "/" +
       getFolderName() +
-      window.location.hostname +
       "/wp-content/plugins/congresso/views/download.php?evento=" +
       eventId +
       "&nomeEvento=" +

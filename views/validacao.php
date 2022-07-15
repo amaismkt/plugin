@@ -85,11 +85,15 @@
     const urlParams = new URLSearchParams(queryString);
     const code = urlParams.get('code');
 
+    function getFolderName() {
+        let fullUri = window.location.pathname;
+        let folderName = fullUri.split("/")[1];
+        return folderName;
+    }
+
     $(document).ready(() => {
-        if(window.location.hostname == "localhost"){
-            $("#icone-certificado").attr("src", "/plugin/wp-content/plugins/congresso/img/certificado.png");
-            $("#dados").attr("action", "/plugin/wp-content/plugins/congresso/back-end/validation.php");
-        }
+        $("#icone-certificado").attr("src", "/"+getFolderName()+"/wp-content/plugins/congresso/img/certificado.png");
+        $("#dados").attr("action", "/"+getFolderName()+"/wp-content/plugins/congresso/back-end/validation.php");
 
         if(code) {
             $("#validation_code").val(code);

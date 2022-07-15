@@ -70,10 +70,8 @@
     }
 
     $(document).ready(() => {
-        if(window.location.hostname == "localhost"){
-            $("#icone-certificado").attr("src", "/"+getFolderName()+"/wp-content/plugins/congresso/img/certificado.png");
-            $("#dados").attr("action", "/"+getFolderName()+"/wp-content/plugins/congresso/back-end/pdf.php");
-        }
+        $("#icone-certificado").attr("src", "/"+getFolderName()+"/wp-content/plugins/congresso/img/certificado.png");
+        $("#dados").attr("action", "/"+getFolderName()+"/wp-content/plugins/congresso/back-end/pdf.php");
     });
 </script>
 </html>
