@@ -119,6 +119,7 @@ function info_table()
                 `localidade` varchar(255) NOT NULL,
                 `data_evento` varchar(255) NOT NULL,
                 `frase_bloqueio` varchar(255) NOT NULL,
+                `razao_social` varchar(255) NOT NULL,
                 PRIMARY KEY(id)
             );
         ";

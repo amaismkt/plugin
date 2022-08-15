@@ -211,6 +211,21 @@
             >
         </div>
 
+        <div class="row" style="margin-top: 26px;">
+            <label class="col-md-4" for="qrcode_text">
+                <b><i class="fa fa-user"></i> Razão social (cpf/cnpj): </b>
+            </label>
+            <input 
+                class="col-md-8" 
+                type="text" 
+                id="razao_social" 
+                class="form-control" 
+                name="razao_social" 
+                required 
+                value="<?php echo get_event_info($_GET['evento'])[0]->razao_social; ?>"
+            >
+        </div>
+
         <div class="row" style="margin-top: 46px;">
             <div class="col-md-1"></div>
             <div class="col-md-2">

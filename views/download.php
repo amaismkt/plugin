@@ -6,26 +6,7 @@
     <meta http-equiv="X-UA-Compatible" content="ie=edge">
     <link href="https://stackpath.bootstrapcdn.com/bootstrap/4.4.1/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-Vkoo8x4CGsO3+Hhxv8T/Q5PaXtkKtu6ug5TOeNV6gBiFeWPGFN9MuhOf23Q9Ifjh" crossorigin="anonymous">
     <title>Baixar Certificado</title>
-    <style>
-        body{
-            background-color: #e1e5e7;
-        }
-        #nomeEvento{
-            width: 100% !important;
-            font-size: 32px;
-            margin-bottom: 32px;
-            text-align: center !important;
-            text-transform: uppercase;
-        }
-        button{
-            background-color: #E6007E !important;
-            border-color: #E6007E !important;
-        }
-        button:hover{
-            background-color: #E6007E !important;
-            border-color: #E6007E !important;
-        }
-    </style>
+    <link rel="stylesheet" href="../css/download.css">
 </head>
 <body>
     <div class="container">

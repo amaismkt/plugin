@@ -47,9 +47,7 @@
             <li><b>Carga horária:</b> <?= $results[0]->carga_horaria; ?></li>
             <li><b>Categoria:</b> <?= $results[0]->categoria; ?></li>
             <li>
-                <b>Autenticador:</b> Associação de Obstetrícia e
-                Ginecologia do Rio Grande do Sul – Sogirgs
-                – CNPJ: 91.336.198/0001-34
+                <b>Autenticador:</b> <?= $razao_social; ?>
             </li>
         </ul>
     </div>

@@ -24,6 +24,14 @@ $eventoInfo = $wpdb->get_results(
     , null) 
 )[0];
 
+$razao_social = $wpdb->get_results(
+    $wpdb->prepare(
+        "SELECT * 
+        FROM {$wpdb->prefix}congresso_info 
+        WHERE event_id='".$eventoId."'"
+    , null) 
+)[0]->razao_social;
+
 $evento = $wpdb->get_results(
     $wpdb->prepare(
         "SELECT * 

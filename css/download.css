@@ -1,0 +1,21 @@
+body {
+  background-color: #f1f3f7;
+}
+
+#nomeEvento {
+  width: 100% !important;
+  font-size: 32px;
+  margin-bottom: 32px;
+  text-align: center !important;
+  text-transform: uppercase;
+}
+
+button {
+  background-color: purple !important;
+  border-color: purple !important;
+}
+
+button:hover {
+  background-color: purple !important;
+  border-color: purple !important;
+}/*# sourceMappingURL=download.css.map */

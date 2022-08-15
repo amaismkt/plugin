@@ -11,26 +11,7 @@
         crossorigin="anonymous"
     >
     <title>Baixar Certificado</title>
-    <style>
-        body{
-            background-color: #e1e5e7;
-        }
-        #nomeEvento{
-            width: 100% !important;
-            font-size: 32px;
-            margin-bottom: 32px;
-            text-align: center !important;
-            text-transform: uppercase;
-        }
-        button{
-            background-color: #E6007E !important;
-            border-color: #E6007E !important;
-        }
-        button:hover{
-            background-color: #E6007E !important;
-            border-color: #E6007E !important;
-        }
-    </style>
+    <link rel="stylesheet" href="../css/validacao.css">
 </head>
 <body>
     <div class="container">

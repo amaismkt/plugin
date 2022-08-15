@@ -152,6 +152,7 @@ function appendDataAndImage() {
   fd.append("localidade", $("#locale").val());
   fd.append("data_evento", $("#data_evento").val());
   fd.append("qrcode_text", $("#qrcode_text").val());
+  fd.append("razao_social", $("#razao_social").val());
 
   const queryString = window.location.search;
   const urlParams = new URLSearchParams(queryString);
