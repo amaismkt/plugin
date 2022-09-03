@@ -1,3 +1,17 @@
+<?php
+if(!isset($wpdb)){
+    //the '../' is the number of folders to go up from the current file to the root-map.
+    require_once('../../../../wp-config.php');
+    require_once('../../../../wp-includes/wp-db.php');
+}
+
+global $wpdb;
+$certificado =  $wpdb->get_results(
+    $wpdb->prepare("SELECT * FROM {$wpdb->prefix}congresso_info ORDER BY data DESC LIMIT 1", null) 
+)[0];
+
+?>
+
 <!DOCTYPE html>
 <html lang="en">
 <head>
@@ -46,7 +60,7 @@
                     <button 
                         class="btn btn-primary" 
                         id="baixar" 
-                        style="margin-top:16px"
+                        style="margin-top:16px; background-color: <?=$certificado->primary_color;?> !important; border-color: <?=$certificado->primary_color;?> !important;"
                     >
                         Validar
                     </button>

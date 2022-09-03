@@ -53,7 +53,8 @@ if(isset($_FILES['file']) && $_FILES['file']['size'] > 0){
                 'localidade' => $_REQUEST['localidade'],
                 'data_evento' =>$_REQUEST['data_evento'],
                 'qrcode_text' => $_REQUEST['qrcode_text'],
-                'razao_social' => $_REQUEST['razao_social']
+                'razao_social' => $_REQUEST['razao_social'],
+                'primary_color' => $_REQUEST['primary_color']
             );
 
             $dadosImagens = array(

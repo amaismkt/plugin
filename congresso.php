@@ -120,6 +120,7 @@ function info_table()
                 `data_evento` varchar(255) NOT NULL,
                 `frase_bloqueio` varchar(255) NOT NULL,
                 `razao_social` varchar(255) NOT NULL,
+                `primary_color` varchar(255),
                 PRIMARY KEY(id)
             );
         ";

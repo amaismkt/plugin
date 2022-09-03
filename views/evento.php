@@ -226,6 +226,21 @@
             >
         </div>
 
+        <div class="row" style="margin-top: 26px;">
+            <label class="col-md-4" for="qrcode_text">
+                <b><i class="fa fa-paint-brush"></i> Cor predominante: </b>
+            </label>
+            <input 
+                class="col-md-8" 
+                type="color" 
+                id="primary_color" 
+                class="form-control" 
+                name="primary_color" 
+                required 
+                value="<?php echo get_event_info($_GET['evento'])[0]->primary_color; ?>"
+            >
+        </div>
+
         <div class="row" style="margin-top: 46px;">
             <div class="col-md-1"></div>
             <div class="col-md-2">

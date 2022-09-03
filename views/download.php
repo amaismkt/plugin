@@ -1,3 +1,17 @@
+<?php
+if(!isset($wpdb)){
+    //the '../' is the number of folders to go up from the current file to the root-map.
+    require_once('../../../../wp-config.php');
+    require_once('../../../../wp-includes/wp-db.php');
+}
+
+global $wpdb;
+$certificado =  $wpdb->get_results(
+    $wpdb->prepare("SELECT * FROM {$wpdb->prefix}congresso_info WHERE event_id=".$_REQUEST['evento']." ORDER BY data DESC LIMIT 1", null) 
+)[0];
+
+?>
+
 <!DOCTYPE html>
 <html lang="en">
 <head>
@@ -18,7 +32,7 @@
                     <input type="text" name="nome" class="form-control" placeholder="Seu nome completo..." required>
                     <input type="text" name="cpf" class="form-control" placeholder="Seu CPF" id="cpf" style="margin-top:16px" required>
                     <input type="number" id="event_id" name="event_id" class="form-control" hidden>
-                    <button class="btn btn-primary" id="baixar" style="margin-top:16px">Baixar</button>
+                    <button class="btn btn-primary" id="baixar" style="margin-top:16px; border-color: <?=$certificado->primary_color;?> !important; background-color: <?=$certificado->primary_color;?> !important;">Baixar</button>
                 </form>
             </div>
         </div>
