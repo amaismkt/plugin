@@ -1,11 +1,18 @@
 <?php
 
-if(!isset($wpdb)){
-    //the '../' is the number of folders to go up from the current file to the root-map.
-    require_once('../../../../wp-config.php');
-    require_once('../../../../wp-includes/wp-db.php');
+// Certifique-se de que o WordPress está carregado corretamente
+if (!defined('ABSPATH')) {
+    require_once('../../../../wp-load.php'); // Carrega o WordPress se ainda não estiver carregado
 }
 
-$eventos = $wpdb->get_results($wpdb->prepare("SELECT * FROM {$wpdb->prefix}eventos", null));
+// Verifica se o $wpdb está disponível
+global $wpdb;
 
-die(json_encode($eventos));
+// Obtém os eventos da tabela personalizada
+$eventos = $wpdb->get_results("SELECT * FROM {$wpdb->prefix}eventos", ARRAY_A);
+
+// Define o cabeçalho como JSON
+header('Content-Type: application/json');
+
+// Retorna os dados como JSON
+echo json_encode($eventos);

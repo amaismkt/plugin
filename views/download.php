@@ -1,14 +1,25 @@
 <?php
 if(!isset($wpdb)){
-    //the '../' is the number of folders to go up from the current file to the root-map.
+    // O '../' é o número de pastas para subir a partir do arquivo atual até a raiz.
     require_once('../../../../wp-config.php');
-    require_once('../../../../wp-includes/wp-db.php');
+    require_once('../../../../wp-includes/class-wpdb.php');
 }
 
 global $wpdb;
+$evento_id = isset($_REQUEST['evento']) ? $_REQUEST['evento'] : 0;  // Certifique-se de que o parâmetro 'evento' existe.
 $certificado =  $wpdb->get_results(
-    $wpdb->prepare("SELECT * FROM {$wpdb->prefix}congresso_info WHERE event_id=".$_REQUEST['evento']." ORDER BY data DESC LIMIT 1", null) 
-)[0];
+    $wpdb->prepare(
+        "SELECT * FROM {$wpdb->prefix}congresso_info WHERE event_id = %d ORDER BY data DESC LIMIT 1", 
+        $evento_id
+    )
+);
+
+if ($certificado) {
+    $certificado = $certificado[0]; // Pegando o primeiro resultado da consulta
+} else {
+    // Caso a consulta não retorne nenhum resultado, você pode definir um valor padrão ou exibir uma mensagem de erro.
+    $certificado = null; 
+}
 
 ?>
 
@@ -28,11 +39,14 @@ $certificado =  $wpdb->get_results(
             <div class="col-md-6 offset-md-3" style="background-color:white; padding: 2%; border-radius: 10px;"> 
                 <form action="/wp-content/plugins/congresso/back-end/pdf.php" id="dados" method="GET">
                     <div id="nomeEvento"></div>
-                    <h3 style="text-align:center;"><img id="icone-certificado" src="/wp-content/plugins/congresso/img/certificado.png" width="150px"> Baixe seu certificado:</h3>
+                    <h3 style="text-align:center;">
+                        <img id="icone-certificado" src="/wp-content/plugins/congresso/img/certificado.png" width="150px"> 
+                        Baixe seu certificado:
+                    </h3>
                     <input type="text" name="nome" class="form-control" placeholder="Seu nome completo..." required>
                     <input type="text" name="cpf" class="form-control" placeholder="Seu CPF" id="cpf" style="margin-top:16px" required>
                     <input type="number" id="event_id" name="event_id" class="form-control" hidden>
-                    <button class="btn btn-primary" id="baixar" style="margin-top:16px; border-color: <?=$certificado->primary_color;?> !important; background-color: <?=$certificado->primary_color;?> !important;">Baixar</button>
+                    <button class="btn btn-primary" id="baixar" style="margin-top:16px; border-color: <?=$certificado ? $certificado->primary_color : '#000000';?> !important; background-color: <?=$certificado ? $certificado->primary_color : '#000000';?> !important;">Baixar</button>
                 </form>
             </div>
         </div>

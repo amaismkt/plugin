@@ -2,85 +2,85 @@
 if(!isset($wpdb)){
     //the '../' is the number of folders to go up from the current file to the root-map.
     require_once('../../../../wp-config.php');
-    require_once('../../../../wp-includes/wp-db.php');
+    require_once('../../../../wp-includes/class-wpdb.php');
 }
 
-$participante_selecionado = $_GET["participante_selecionado"];
+$participante_selecionado = isset($_GET["participante_selecionado"]) ? $_GET["participante_selecionado"] : null;
 
 require_once "../plugins/dompdf/autoload.inc.php";
 use Dompdf\Dompdf;
 
 global $wpdb;
-$participante = $wpdb->get_results( 
-    $wpdb->prepare("SELECT * FROM {$wpdb->prefix}participantes WHERE cpf='".$_REQUEST['cpf']."' AND event_id=".$_REQUEST['event_id'], null) 
-);
 
-if ($participante_selecionado) {
-    $participante = array_values(array_filter($participante, function($v, $k) use ($participante_selecionado){
-        return  $v->id == $participante_selecionado;
-    }, ARRAY_FILTER_USE_BOTH));
+// Verificar se os parâmetros 'cpf' e 'event_id' estão definidos
+if(isset($_REQUEST['cpf']) && isset($_REQUEST['event_id'])){
+    $participante = $wpdb->get_results(
+        $wpdb->prepare("SELECT * FROM {$wpdb->prefix}participantes WHERE cpf = %s AND event_id = %d", $_REQUEST['cpf'], $_REQUEST['event_id'])
+    );
+
+    if(count($participante) == 0) {
+        die("Participante não encontrado.");
+    }
+
+    $participante = $participante[0]; // Garantir que estamos acessando o primeiro item da consulta
+} else {
+    die("Parâmetros de CPF ou event_id ausentes.");
 }
 
 $bloqueio = $wpdb->get_results(
-    $wpdb->prepare("SELECT * FROM {$wpdb->prefix}bloqueio ORDER BY id DESC LIMIT 1", null) 
-)[0];
+    $wpdb->prepare("SELECT * FROM {$wpdb->prefix}bloqueio ORDER BY id DESC LIMIT %d", 1) // Placeholder para o LIMIT 1
+);
 
-if($bloqueio->bloqueio == 1){
-    die("<h3 style='text-align:center; margin-top: 7%;'>".$bloqueio->frase_bloqueio."</h3>");
-}
+$background = $wpdb->get_results(
+    $wpdb->prepare("SELECT * FROM {$wpdb->prefix}congresso_images WHERE event_id = %d AND VERSO = 0 ORDER BY data DESC LIMIT %d", $_REQUEST['event_id'], 1) // Placeholder para LIMIT 1
+);
 
-if(!$participante){
-    die("<h3 style='text-align:center; margin-top: 7%;'>Participante não encontrado!</h3>");
-}
+$backImg = $wpdb->get_results(
+    $wpdb->prepare("SELECT * FROM {$wpdb->prefix}congresso_images WHERE event_id = %d AND VERSO = 1 ORDER BY data DESC LIMIT %d", $_REQUEST['event_id'], 1) // Placeholder para LIMIT 1
+);
 
-$background =  $wpdb->get_results(
-    $wpdb->prepare("SELECT * FROM {$wpdb->prefix}congresso_images WHERE event_id=".$_REQUEST['event_id']." AND VERSO = 0 ORDER BY data DESC LIMIT 1", null) 
-)[0];
+$certificado = $wpdb->get_results(
+    $wpdb->prepare("SELECT * FROM {$wpdb->prefix}congresso_info WHERE event_id = %d ORDER BY data DESC LIMIT %d", $_REQUEST['event_id'], 1) // Placeholder para LIMIT 1
+);
 
-$backImg =  $wpdb->get_results(
-    $wpdb->prepare("SELECT * FROM {$wpdb->prefix}congresso_images WHERE event_id=".$_REQUEST['event_id']." AND VERSO = 1 ORDER BY data DESC LIMIT 1", null) 
-)[0];
+$evento = $wpdb->get_results(
+    $wpdb->prepare("SELECT * FROM {$wpdb->prefix}eventos WHERE id = %d LIMIT %d", $_REQUEST['event_id'], 1) // Placeholder para LIMIT 1
+);
 
-$certificado =  $wpdb->get_results(
-    $wpdb->prepare("SELECT * FROM {$wpdb->prefix}congresso_info WHERE event_id=".$_REQUEST['event_id']." ORDER BY data DESC LIMIT 1", null) 
-)[0];
-
-$evento =  $wpdb->get_results(
-    $wpdb->prepare("SELECT * FROM {$wpdb->prefix}eventos WHERE id=".$_REQUEST['event_id']." LIMIT 1", null) 
-)[0];
 
 if($_SERVER["HTTP_HOST"] == "localhost") {
     $path = "http://api.qrserver.com/v1/create-qr-code/?size=150x150&data=localhost/plugin/wp-content/plugins/congresso/views/validacao%2Ephp?code="
-    .$participante[0]->validation_code;
-}
-else {
+    . $participante->validation_code;
+} else {
     $path = "http://api.qrserver.com/v1/create-qr-code/?size=150x150&data=https://".$_SERVER['SERVER_NAME']."/wp-content/plugins/congresso/views/validacao%2Ephp?code="
-    .$participante[0]->validation_code;
+    . $participante->validation_code;
 }
 
-if (count($participante) > 1) {
+// Verificação para selecionar participante
+if (is_array($participante) && count($participante) > 1) {
     include_once "../views/seleciona_participante.php";
 } else {
     $type = pathinfo($path, PATHINFO_EXTENSION);
-    $data = file_get_contents($path);
-    $base64 = 'data:image/' . $type . ';base64,' . base64_encode($data);
-    
+    $data = @file_get_contents($path, false); // Usar @ para evitar warnings se o arquivo não puder ser carregado
+    $base64 = $data ? 'data:image/' . $type . ';base64,' . base64_encode($data) : '';
+
+    // Definir os cabeçalhos antes de qualquer saída
     setlocale(LC_TIME, 'pt_BR', 'pt_BR.utf-8', 'pt_BR.utf-8', 'portuguese');
     date_default_timezone_set('America/Sao_Paulo');
     header('Content-type: text/html; charset=UTF-8');
-    ob_start();
     
-    include_once "../views/pdf/index.php";
+    ob_start(); // Começar o buffer de saída
     
-    $html = ob_get_contents();
-    ob_end_clean();
+    include_once "../views/pdf/index.php"; // Incluindo o HTML para o PDF
+    
+    $html = ob_get_contents(); // Captura o HTML gerado
+    ob_end_clean(); // Limpar o buffer de saída
     
     $dompdf = new Dompdf();
     $dompdf->loadHtml($html);
     $dompdf->setPaper('A4', 'landscape');
     $dompdf->render();
-    $dompdf->stream('aaa', array("Attachment" => false));
+    $dompdf->stream('certificado.pdf', array("Attachment" => false)); // Corrigir nome do arquivo
     exit(0);
-    
-    
 }
+?>

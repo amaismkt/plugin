@@ -39,7 +39,7 @@ if(isset($_FILES['file']) && $_FILES['file']['size'] > 0){
             if(!isset($wpdb)) {
                 //the '../' is the number of folders to go up from the current file to the root-map.
                 require_once('../../../../wp-config.php');
-                require_once('../../../../wp-includes/wp-db.php');
+                require_once('../../../../wp-includes/class-wpdb.php');
             }
 
             $info_table_name = $wpdb->prefix."congresso_info";

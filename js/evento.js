@@ -1,8 +1,10 @@
 $(document).ready(() => {
   // verfica o campo "Desabilitar download de certificados"
   $.get("../wp-content/plugins/congresso/back-end/verifyBlock.php", (data) => {
-    if (JSON.parse(data)?.bloqueio == 1) {
-      $("#desabilitar").attr("checked", true);
+    if(data) {
+      if (data?.bloqueio == 1) {
+        $("#desabilitar").attr("checked", true);
+      }
     }
   });
 

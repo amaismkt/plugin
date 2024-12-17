@@ -1,15 +1,25 @@
 <?php
 if(!isset($wpdb)){
-    //the '../' is the number of folders to go up from the current file to the root-map.
+    // The '../' is the number of folders to go up from the current file to the root-map.
     require_once('../../../../wp-config.php');
-    require_once('../../../../wp-includes/wp-db.php');
+    require_once('../../../../wp-includes/class-wpdb.php');
 }
 
 global $wpdb;
 $certificado =  $wpdb->get_results(
-    $wpdb->prepare("SELECT * FROM {$wpdb->prefix}congresso_info ORDER BY data DESC LIMIT 1", null) 
-)[0];
+    "SELECT * FROM {$wpdb->prefix}congresso_info ORDER BY data DESC LIMIT 1"
+);
 
+// Check if the query returned any results
+if (!empty($certificado)) {
+    $certificado = $certificado[0];
+} else {
+    // Handle the case where no results were found
+    // For example, you could set default values or display an error message
+    $certificado = null;
+    // Optionally, display a message or handle the error
+    // echo "Nenhum certificado encontrado.";
+}
 ?>
 
 <!DOCTYPE html>
@@ -60,7 +70,7 @@ $certificado =  $wpdb->get_results(
                     <button 
                         class="btn btn-primary" 
                         id="baixar" 
-                        style="margin-top:16px; background-color: <?=$certificado->primary_color;?> !important; border-color: <?=$certificado->primary_color;?> !important;"
+                        style="margin-top:16px; background-color: <?=$certificado ? $certificado->primary_color : '#000'; ?> !important; border-color: <?=$certificado ? $certificado->primary_color : '#000'; ?> !important;"
                     >
                         Validar
                     </button>

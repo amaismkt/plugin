@@ -107,7 +107,7 @@ function info_table()
 
     require_once(ABSPATH . 'wp-admin/includes/upgrade.php');
 
-    if(count($wpdb->get_var('SHOW TABLES LIKE "'.$wpdb->prefix.'congresso_info"')) == 0){
+    if($wpdb->get_var('SHOW TABLES LIKE "'.$wpdb->prefix.'congresso_info"') === null){
 
         $sql = "
             CREATE TABLE `".$wpdb->prefix."congresso_info` (
@@ -137,7 +137,7 @@ function images_table()
 
     require_once(ABSPATH . 'wp-admin/includes/upgrade.php');
 
-    if(count($wpdb->get_var('SHOW TABLES LIKE "'.$wpdb->prefix.'congresso_images"')) == 0){
+    if($wpdb->get_var('SHOW TABLES LIKE "'.$wpdb->prefix.'congresso_images"') == null){
 
         $sql = "
             CREATE TABLE `".$wpdb->prefix."congresso_images` (
@@ -162,7 +162,7 @@ function congresso_tables()
 
     require_once(ABSPATH . 'wp-admin/includes/upgrade.php');
 
-    if(count($wpdb->get_var('SHOW TABLES LIKE "'.$wpdb->prefix.'participantes"')) == 0){
+    if($wpdb->get_var('SHOW TABLES LIKE "'.$wpdb->prefix.'participantes"') == null){
 
         $sql = "
             CREATE TABLE `".$wpdb->prefix."participantes` (
@@ -194,7 +194,7 @@ function bloqueio_table()
 
     require_once(ABSPATH . 'wp-admin/includes/upgrade.php');
 
-    if(count($wpdb->get_var('SHOW TABLES LIKE "'.$wpdb->prefix.'bloqueio"')) == 0){
+    if($wpdb->get_var('SHOW TABLES LIKE "'.$wpdb->prefix.'bloqueio"') == null){
 
         $sql = "
             CREATE TABLE `".$wpdb->prefix."bloqueio` (
@@ -219,7 +219,7 @@ function events_table()
 
     require_once(ABSPATH . 'wp-admin/includes/upgrade.php');
 
-    if(count($wpdb->get_var('SHOW TABLES LIKE "'.$wpdb->prefix.'eventos"')) == 0){
+    if($wpdb->get_var('SHOW TABLES LIKE "'.$wpdb->prefix.'eventos"') == null){
 
         $sql = "
             CREATE TABLE `".$wpdb->prefix."eventos` (

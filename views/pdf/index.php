@@ -73,28 +73,28 @@
 </style>
 <body>
     <div class="page_break">
-        <img class="background" src="../back-end/img/<?= $background->nome_arquivo;?>">
+        <img class="background" src="../back-end/img/<?= $background[0]->nome_arquivo; ?>">
     </div>
     <div class="corpo-doc">
         <h1 class="nome">
-            <?= $participante[0]->nome; ?>
+            <?= $participante->nome; ?>
         </h1>
-        <h2><?= $certificado->titulo; ?></h2>
-        <br><span>Carga horária: <?= $participante[0]->carga_horaria; ?></span>
-        <br><span>Categoria: <?= $participante[0]->categoria; ?></span>
-        <br><span><?= $participante[0]->mesa_redonda; ?></span>
-        <br><span><?= $participante[0]->palestra; ?></span>
-        <?php if($certificado->localidade && $certificado->data_evento): ?>
+        <h2><?= $certificado[0]->titulo; ?></h2>
+        <br><span>Carga horária: <?= $participante->carga_horaria; ?></span>
+        <br><span>Categoria: <?= $participante->categoria; ?></span>
+        <br><span><?= $participante->mesa_redonda; ?></span>
+        <br><span><?= $participante->palestra; ?></span>
+        <?php if($certificado[0]->localidade && $certificado[0]->data_evento): ?>
             <br>
-            <span><?= $certificado->localidade; ?>.</span>
+            <span><?= $certificado[0]->localidade; ?>.</span>
         <?php endif; ?>
         <div class="qrcode">
-            <div class="qrcode_text"><?= $certificado->qrcode_text; ?></div>
+            <div class="qrcode_text"><?= $certificado[0]->qrcode_text; ?></div>
             <br>
             <img src="<?=$base64;?>" class="qrcodeimg"/>
-            <span class="codenumber"><?= $participante[0]->validation_code; ?></span>
+            <span class="codenumber"><?= $participante->validation_code; ?></span>
         </div>
     </div>
-    <img class="verso" src="../back-end/img/<?= $backImg->nome_arquivo;?>" />
+    <img class="verso" src="../back-end/img/<?= $backImg->nome_arquivo; ?>" />
 </body>
 </html>

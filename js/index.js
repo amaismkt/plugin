@@ -16,7 +16,7 @@ $(document).ready(() => {
   getEvents = () => {
     $.get("../wp-content/plugins/congresso/back-end/listEvents.php")
       .done((data) => {
-        events = JSON.parse(data);
+        events = data;
         setAddCard();
         events.forEach((element) => makeCard(element.nome, element.id));
       })

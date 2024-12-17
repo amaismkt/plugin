@@ -117,7 +117,7 @@
                 src="<?php 
                         echo plugin_dir_url( dirname( __FILE__ ) ); 
                     ?>/back-end/img/<?php 
-                        echo get_event_image($_GET['evento'])[0]->nome_arquivo; 
+                        echo get_event_image($_GET['evento'])[0]->nome_arquivo ?? "Não encontrado"; 
                     ?>" 
                 alt="" 
                 srcset=""
@@ -142,7 +142,7 @@
                 src="<?php 
                         echo plugin_dir_url( dirname( __FILE__ ) ); 
                     ?>/back-end/img/<?php 
-                        echo get_event_backimage($_GET['evento'])[0]->nome_arquivo; 
+                        echo get_event_backimage($_GET['evento'])[0]->nome_arquivo ?? "Não encontrado"; 
                     ?>" 
                 alt="" 
                 srcset=""
@@ -162,7 +162,7 @@
                 class="form-control" 
                 name="title" 
                 required 
-                value="<?php echo get_event_info($_GET['evento'])[0]->titulo; ?>"
+                value="<?php echo get_event_info($_GET['evento'])[0]->titulo ?? "Não encontrado"; ?>"
             >
         </div>
         
@@ -177,7 +177,7 @@
                 class="form-control" 
                 name="locale" 
                 required 
-                value="<?php echo get_event_info($_GET['evento'])[0]->localidade; ?>"
+                value="<?php echo get_event_info($_GET['evento'])[0]->localidade ?? "Não encontrado"; ?>"
             >
         </div>
 
@@ -192,7 +192,7 @@
                 class="form-control" 
                 name="data_evento" 
                 required 
-                value="<?php echo get_event_info($_GET['evento'])[0]->data_evento; ?>"
+                value="<?php echo get_event_info($_GET['evento'])[0]->data_evento ?? "Não encontrado"; ?>"
             >
         </div>
 
@@ -207,7 +207,7 @@
                 class="form-control" 
                 name="qrcode_text" 
                 required 
-                value="<?php echo get_event_info($_GET['evento'])[0]->qrcode_text; ?>"
+                value="<?php echo get_event_info($_GET['evento'])[0]->qrcode_text ?? "Não encontrado"; ?>"
             >
         </div>
 
@@ -222,7 +222,7 @@
                 class="form-control" 
                 name="razao_social" 
                 required 
-                value="<?php echo get_event_info($_GET['evento'])[0]->razao_social; ?>"
+                value="<?php echo get_event_info($_GET['evento'])[0]->razao_social ?? "Não encontrado"; ?>"
             >
         </div>
 
@@ -237,7 +237,7 @@
                 class="form-control" 
                 name="primary_color" 
                 required 
-                value="<?php echo get_event_info($_GET['evento'])[0]->primary_color; ?>"
+                value="<?php echo get_event_info($_GET['evento'])[0]->primary_color ?? "Não encontrado"; ?>"
             >
         </div>
 
