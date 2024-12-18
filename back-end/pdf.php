@@ -7,7 +7,7 @@ if(!isset($wpdb)){
 
 $participante_selecionado = isset($_GET["participante_selecionado"]) ? $_GET["participante_selecionado"] : null;
 
-require_once "../plugins/dompdf/autoload.inc.php";
+require_once "../vendor/autoload.php";
 use Dompdf\Dompdf;
 
 global $wpdb;

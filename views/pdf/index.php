@@ -94,7 +94,7 @@
             <img src="<?=$base64;?>" class="qrcodeimg"/>
             <span class="codenumber"><?= $participante->validation_code; ?></span>
         </div>
+        <img class="verso" src="../back-end/img/<?= $backImg[0]->nome_arquivo; ?>" />
     </div>
-    <img class="verso" src="../back-end/img/<?= $backImg->nome_arquivo; ?>" />
 </body>
 </html>
