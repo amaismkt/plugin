@@ -231,30 +231,4 @@ function getFolderName() {
   return folderName;
 }
 
-if (window.location.hostname == "localhost") {
-  $("#url").attr(
-    "href",
-    "http://" +
-      window.location.hostname +
-      "/" +
-      getFolderName() +
-      "/wp-content/plugins/congresso/views/download.php?evento=" +
-      eventId +
-      "&nomeEvento=" +
-      localStorage.getItem("nomeDoEvento")
-  );
-} else {
-  $("#url").attr(
-    "href",
-    "https://" +
-      window.location.hostname +
-      "/" +
-      getFolderName() +
-      "/wp-content/plugins/congresso/views/download.php?evento=" +
-      eventId +
-      "&nomeEvento=" +
-      localStorage.getItem("nomeDoEvento")
-  );
-}
 
-//

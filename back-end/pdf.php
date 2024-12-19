@@ -72,11 +72,12 @@ if (is_array($participante) && count($participante) > 1) {
     ob_start(); // Começar o buffer de saída
     
     include_once "../views/pdf/index.php"; // Incluindo o HTML para o PDF
-    
+
     $html = ob_get_contents(); // Captura o HTML gerado
     ob_end_clean(); // Limpar o buffer de saída
     
     $dompdf = new Dompdf();
+    $dompdf = new Dompdf(array('enable_remote' => true));
     $dompdf->loadHtml($html);
     $dompdf->setPaper('A4', 'landscape');
     $dompdf->render();

@@ -45,7 +45,7 @@ if (!empty($certificado)) {
                 style="background-color:white; padding: 2%; border-radius: 10px;"
             > 
                 <form 
-                    action="/wp-content/plugins/congresso/back-end/validation.php" 
+                    action="/plugins/congresso/back-end/validation.php" 
                     id="dados" 
                     method="GET"
                 >
@@ -53,7 +53,7 @@ if (!empty($certificado)) {
                     <h3 style="text-align:center;">
                         <img 
                             id="icone-certificado" 
-                            src="/wp-content/plugins/congresso/img/certificado.png" 
+                            src="/plugins/congresso/img/certificado.png" 
                             width="150px"
                         > 
                         Validar certificado:
@@ -90,15 +90,9 @@ if (!empty($certificado)) {
     const urlParams = new URLSearchParams(queryString);
     const code = urlParams.get('code');
 
-    function getFolderName() {
-        let fullUri = window.location.pathname;
-        let folderName = fullUri.split("/")[1];
-        return folderName;
-    }
-
     $(document).ready(() => {
-        $("#icone-certificado").attr("src", "/"+getFolderName()+"/wp-content/plugins/congresso/img/certificado.png");
-        $("#dados").attr("action", "/"+getFolderName()+"/wp-content/plugins/congresso/back-end/validation.php");
+        $("#icone-certificado").attr("src", "/wp-content/plugins/congresso/img/certificado.png");
+        $("#dados").attr("action", "/wp-content/plugins/congresso/back-end/validation.php");
 
         if(code) {
             $("#validation_code").val(code);

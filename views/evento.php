@@ -274,9 +274,10 @@
           <button type="button" class="close" data-dismiss="modal">&times;</button>
         </div>
         <div class="modal-body">
-          <p>Para disponibilizar o link para os participantes em seu site, copie a URL abaixo:</p>
+          <p>Para disponibilizar o link para os participantes em seu site, copie a URL abaixo: </p>
           <br>
-          <a id="url" target="_blank"></a>
+          <a href="#" id="link-download" target="_blank">Clique aqui</a>
+          <!-- <a id="url" target="_blank"></a> -->
         </div>
         <div class="modal-footer">
           <button type="button" class="btn btn-default" data-dismiss="modal">Fechar</button>
@@ -287,16 +288,27 @@
 </div>
 
 <script>
-    function getFolderName() {
-        let fullUri = window.location.pathname;
-        let folderName = fullUri.split("/")[1];
-        return folderName;
-    }
     $("#validacao").attr(
-            "href",
-            `http://${window.location.hostname}/${getFolderName()}/wp-content/plugins/congresso/views/validacao.php`
-        );
-    $("#url").html("Clique aqui");
+        "href",
+        `http://${window.location.hostname}/wp-content/plugins/congresso/views/validacao.php`
+    );
+
+    
+    document.addEventListener('DOMContentLoaded', function () {
+        // URL gerada dinamicamente
+        const urlDownload = "https://sogirgs.org.br/wp-content/plugins/congresso/views/download.php?evento=" +
+            eventId +
+            "&nomeEvento=" +
+            localStorage.getItem("nomeDoEvento");
+
+        // Seleciona o elemento <a> pelo ID
+        const linkDownload = document.getElementById('link-download');
+
+        // Define o atributo href com a URL gerada
+        linkDownload.setAttribute('href', urlDownload);
+    });
+
+
     localStorage.setItem("nomeDoEvento", $("#nome-evento").val());
 </script>
 <?php require 'partials/footer.php'; ?>

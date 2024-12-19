@@ -62,18 +62,20 @@ if(isset($_FILES['file']) && $_FILES['file']['size'] > 0){
                 'nome_arquivo' => $nome_escudo
             );
 
+            // Verifica se é edição ou novo registro
             if ($results) {
                 $wpdb->update($info_table_name, $dados, array('event_id' => $results->event_id));
             } else {
                 $wpdb->insert($info_table_name, $dados);
-                $wpdb->insert($images_table_name, $dadosImagens);
-                if ($nome_escudo_verso) {
-                    $wpdb->insert($images_table_name, array(
-                        'event_id' => $_REQUEST['event_id'],
-                        'nome_arquivo' => $nome_escudo_verso,
-                        'verso' => 1
-                    ));
-                }
+            }
+
+            $wpdb->insert($images_table_name, $dadosImagens);
+            if ($nome_escudo_verso) {
+                $wpdb->insert($images_table_name, array(
+                    'event_id' => $_REQUEST['event_id'],
+                    'nome_arquivo' => $nome_escudo_verso,
+                    'verso' => 1
+                ));
             }
 
             if($wpdb->last_error !== '') {
