@@ -1,6 +1,5 @@
 <?php
 if(!isset($wpdb)){
-    // O '../' é o número de pastas para subir a partir do arquivo atual até a raiz.
     require_once('../../../../wp-config.php');
     require_once('../../../../wp-includes/class-wpdb.php');
 }
@@ -17,7 +16,6 @@ $certificado =  $wpdb->get_results(
 if ($certificado) {
     $certificado = $certificado[0]; // Pegando o primeiro resultado da consulta
 } else {
-    // Caso a consulta não retorne nenhum resultado, você pode definir um valor padrão ou exibir uma mensagem de erro.
     $certificado = null; 
 }
 
@@ -72,15 +70,11 @@ if ($certificado) {
         $("#cpf").val(cpf);
     });
 
-    function getFolderName() {
-        let fullUri = window.location.pathname;
-        let folderName = fullUri.split("/")[1];
-        return folderName;
-    }
-
     $(document).ready(() => {
-        $("#icone-certificado").attr("src", "/"+getFolderName()+"/plugins/congresso/img/certificado.png");
-        $("#dados").attr("action", "/"+getFolderName()+"/plugins/congresso/back-end/pdf.php");
+        if (window.location.hostname === 'localhost' || window.location.hostname === '127.0.0.1') {
+            // substituir por caminho local correto caso a pasta não se chame 'wordpress'
+            $("#dados").attr("action", "http://localhost/wordpress/wp-content/plugins/congresso/back-end/pdf.php");
+        } 
     });
 </script>
 </html>

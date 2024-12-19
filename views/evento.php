@@ -292,22 +292,23 @@
         "href",
         `http://${window.location.hostname}/wp-content/plugins/congresso/views/validacao.php`
     );
-
     
     document.addEventListener('DOMContentLoaded', function () {
-        // URL gerada dinamicamente
-        const urlDownload = "https://sogirgs.org.br/wp-content/plugins/congresso/views/download.php?evento=" +
+        let baseUrl = "https://sogirgs.org.br/wp-content/plugins/congresso/views/";
+
+        if (window.location.hostname === 'localhost' || window.location.hostname === '127.0.0.1') {
+            // substituir por caminho local correto caso a pasta não se chame 'wordpress'
+            baseUrl = "http://localhost/wordpress/wp-content/plugins/congresso/views/"
+        }
+
+        const urlDownload = `${baseUrl}download.php?evento=` +
             eventId +
             "&nomeEvento=" +
             localStorage.getItem("nomeDoEvento");
 
-        // Seleciona o elemento <a> pelo ID
         const linkDownload = document.getElementById('link-download');
-
-        // Define o atributo href com a URL gerada
         linkDownload.setAttribute('href', urlDownload);
     });
-
 
     localStorage.setItem("nomeDoEvento", $("#nome-evento").val());
 </script>

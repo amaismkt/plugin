@@ -15,7 +15,7 @@
 
     .corpo-doc {
         text-align: center;
-        padding-top: 300px;
+        padding-top: 266px;
         margin-left: 340px;
     }
 
@@ -64,31 +64,32 @@
         text-align: left;
     }
     .verso {
-        margin-left: -45px !important;
-        margin-top: -45px !important;
+        margin: -45px 0 0 -45px !important;
         padding: 0% !important;
+        width: 100%;
+    }
+    .verso-container {
         width: 109%;
     }
 </style>
 <body>
-<div class="page_break">
-    <?php
-    // URL do arquivo em localhost
-    $localUrl = "http://localhost/wordpress/wp-content/plugins/congresso/back-end/img/";
-    // URL para produção ou ambiente externo
-    $prodUrl = "https://sogirgs.org.br/wp-content/plugins/congresso/back-end/img/";
+    <div class="page_break">
+        <?php
+        // URL do arquivo em localhost
+        $localUrl = "http://localhost/wordpress/wp-content/plugins/congresso/back-end/img/";
+        // URL para produção ou ambiente externo
+        $prodUrl = "https://sogirgs.org.br/wp-content/plugins/congresso/back-end/img/";
 
-    // Verifica se está em localhost
-    $isLocalhost = ($_SERVER['HTTP_HOST'] === 'localhost');
+        // Verifica se está em localhost
+        $isLocalhost = ($_SERVER['HTTP_HOST'] === 'localhost');
 
-    // Define a URL base conforme o ambiente
-    $baseUrl = $isLocalhost ? $localUrl : $prodUrl;
-    ?>
+        // Define a URL base conforme o ambiente
+        $baseUrl = $isLocalhost ? $localUrl : $prodUrl;
+        ?>
 
-    <!-- Exibe a imagem com a URL correspondente -->
-    <img class="background" src="<?= $baseUrl . $background[0]->nome_arquivo; ?>">
-</div>
-
+        <!-- Exibe a imagem com a URL correspondente -->
+        <img class="background" src="<?= $baseUrl . $background[0]->nome_arquivo; ?>">
+    </div>
     <div class="corpo-doc">
         <h1 class="nome">
             <?= $participante->nome; ?>
@@ -108,6 +109,8 @@
             <img src="<?=$base64;?>" class="qrcodeimg"/>
             <span class="codenumber"><?= $participante->validation_code; ?></span>
         </div>
+    </div>
+    <div class="verso-container">
         <img class="verso" src="<?= $baseUrl . $backImg[0]->nome_arquivo; ?>" />
     </div>
 </body>
