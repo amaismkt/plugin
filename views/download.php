@@ -35,10 +35,10 @@ if ($certificado) {
     <div class="container">
         <div class="row" style="margin-top: 4%;">
             <div class="col-md-6 offset-md-3" style="background-color:white; padding: 2%; border-radius: 10px;"> 
-                <form action="/plugins/congresso/back-end/pdf.php" id="dados" method="GET">
+                <form action="/wp-content/plugins/congresso/back-end/pdf.php" id="dados" method="GET">
                     <div id="nomeEvento"></div>
                     <h3 style="text-align:center;">
-                        <img id="icone-certificado" src="/plugins/congresso/img/certificado.png" width="150px"> 
+                        <img id="icone-certificado" src="/wp-content/plugins/congresso/img/certificado.png" width="150px"> 
                         Baixe seu certificado:
                     </h3>
                     <input type="text" name="nome" class="form-control" placeholder="Seu nome completo..." required>
